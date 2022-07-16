@@ -19,7 +19,7 @@ const Home = ({navigation}) => {
             <Button
               buttonStyle={styles.btnStyle}
               onPress={() => {
-                navigation.navigate('register');
+                navigation.navigate('Register');
               }}
               title="Create New Account"
               color="#6A4029"
@@ -28,7 +28,7 @@ const Home = ({navigation}) => {
               <Button
                 buttonStyle={styles.btnStyle}
                 onPress={() => {
-                  navigation.navigate('login');
+                  navigation.navigate('Login');
                 }}
                 title="Login"
                 color="#FFBA33"

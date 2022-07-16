@@ -4,17 +4,17 @@ import Welcome from './screens/Welcome/index';
 import Login from './screens/Login/index';
 import Register from './screens/Register/index';
 import Forgot from './screens/Forgot/index';
-import Home from './screens/Home/index';
+import Landing from './screens/Landing/index';
 
 export default function App() {
   const {Navigator, Screen} = createDrawerNavigator();
   return (
-    <Navigator initialRouteName="welcome" screenOptions={{headerShown: false}}>
-      <Screen name="welcome" component={Welcome} />
-      <Screen name="home" component={Home} />
-      <Screen name="login" component={Login} />
-      <Screen name="register" component={Register} />
-      <Screen name="forgot" component={Forgot} />
+    <Navigator initialRouteName="Welcome" screenOptions={{headerShown: false}}>
+      <Screen name="Welcome" component={Welcome} />
+      <Screen name="Landing" component={Landing} />
+      <Screen name="Login" component={Login} />
+      <Screen name="Register" component={Register} />
+      <Screen name="Forgot" component={Forgot} />
     </Navigator>
   );
 }

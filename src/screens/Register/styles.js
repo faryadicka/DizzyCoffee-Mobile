@@ -7,7 +7,7 @@ export default StyleSheet.create({
     marginTop: 10,
   },
   inputField: {
-    color: 'black',
+    color: 'white',
   },
   BgImage: {
     flex: 1,

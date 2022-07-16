@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, ImageBackground} from 'react-native';
+import {registerAxios} from '../../modules/auth';
 import {Button} from '@rneui/themed';
 import styles from './styles';
 import bgImage from '../../assets/img/bgregister.png';
+import ModalNav from '../../components/ModalNav/ModalNav';
 
 const CustomTitle = () => {
   return (
@@ -11,7 +13,13 @@ const CustomTitle = () => {
     </View>
   );
 };
-const Register = () => {
+const Register = ({navigation}) => {
+  const [showModal, setShowModal] = useState(false);
+  const [isError, setIseError] = useState(false);
+  const [message, setMessage] = useState({
+    err: '',
+    success: '',
+  });
   const [input, setInput] = useState({
     email: '',
     password: '',
@@ -23,54 +31,79 @@ const Register = () => {
       password: input.password,
       phone: input.phone,
     };
+    registerAxios(body)
+      .then(res => {
+        console.log(res);
+        setIseError(false);
+        setMessage({...message, success: 'Register Success!'});
+        setShowModal(true);
+      })
+      .catch(err => {
+        console.log(err);
+        setMessage({...message, err: err.response?.data.message});
+        setIseError(true);
+        setShowModal(true);
+      });
   };
   return (
-    <View style={styles.containerRegister}>
-      <ImageBackground source={bgImage} style={styles.BgImage}>
-        <View style={styles.bgShadow}>
-          <Text style={styles.headerRegister}>Sign Up</Text>
-          <View style={styles.containerInput}>
-            <View style={styles.inputBox}>
-              <TextInput
-                style={styles.inputField}
-                placeholder="Enter your email adress"
-                onChange={email => setInput({...input, email})}
-              />
-            </View>
-            <View style={styles.inputBox}>
-              <TextInput
-                style={styles.inputField}
-                placeholder="Enter your password"
-                onChange={password => setInput({...input, password})}
-              />
-            </View>
-            <View style={styles.inputBox}>
-              <TextInput
-                style={styles.inputField}
-                placeholder="Enter your phone number"
-                onChange={phone => setInput({...input, phone})}
-              />
-            </View>
-            <View style={styles.Button}>
-              <Button
-                buttonStyle={styles.btnStyle}
-                onPress={handleRegister}
-                title="Create Account"
-                color="#6A4029"
-              />
-            </View>
-            <View style={styles.Button}>
-              <Button
-                buttonStyle={styles.btnStyle}
-                onPress={handleRegister}
-                title={<CustomTitle />}
-                color="#FFF"
-              />
+    <>
+      <View style={styles.containerRegister}>
+        <ImageBackground source={bgImage} style={styles.BgImage}>
+          <View style={styles.bgShadow}>
+            <Text style={styles.headerRegister}>Sign Up</Text>
+            <View style={styles.containerInput}>
+              <View style={styles.inputBox}>
+                <TextInput
+                  style={styles.inputField}
+                  placeholder="Enter your email adress"
+                  onChangeText={email => setInput({...input, email})}
+                  value={input.email}
+                />
+              </View>
+              <View style={styles.inputBox}>
+                <TextInput
+                  style={styles.inputField}
+                  placeholder="Enter your password"
+                  onChangeText={password => setInput({...input, password})}
+                  value={input.password}
+                />
+              </View>
+              <View style={styles.inputBox}>
+                <TextInput
+                  style={styles.inputField}
+                  placeholder="Enter your phone number"
+                  onChangeText={phone => setInput({...input, phone})}
+                  value={input.phone}
+                />
+              </View>
+              <View style={styles.Button}>
+                <Button
+                  buttonStyle={styles.btnStyle}
+                  onPress={handleRegister}
+                  title="Create Account"
+                  color="#6A4029"
+                />
+              </View>
+              <View style={styles.Button}>
+                <Button
+                  buttonStyle={styles.btnStyle}
+                  title={<CustomTitle />}
+                  color="#FFF"
+                />
+              </View>
             </View>
           </View>
-        </View>
-      </ImageBackground>
-    </View>
+        </ImageBackground>
+      </View>
+      <ModalNav
+        show={showModal}
+        hide={() => setShowModal(false)}
+        navigation={navigation}
+        title={!isError ? message.success : message.err}
+        status={isError}
+        route="Login"
+      />
+    </>
   );
 };
 

@@ -15,7 +15,7 @@ const Welcome = ({navigation}) => {
               <Button
                 buttonStyle={styles.btnStyle}
                 onPress={() => {
-                  navigation.navigate('home');
+                  navigation.navigate('Landing');
                 }}
                 title="Get started"
                 color="#FFBA33"
