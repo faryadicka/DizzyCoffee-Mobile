@@ -1,16 +1,24 @@
 import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {View, Text, TextInput, ImageBackground} from 'react-native';
 import {Button} from '@rneui/base';
-// import {loginAxios} from '../../modules/auth';
+import {loginAction} from '../../redux/actionCreator/auth';
 import styles from './styles';
 import bgImage from '../../assets/img/bglogin.png';
 
 const Login = () => {
+  const dispatch = useDispatch();
   const [input, setInput] = useState({
     email: '',
     password: '',
   });
-  // console.log(input)
+  const handleLogin = () => {
+    const body = {
+      email: input.email,
+      password: input.password,
+    };
+    dispatch(loginAction(body));
+  };
   return (
     <View style={styles.containerLogin}>
       <ImageBackground source={bgImage} style={styles.BgImage}>
@@ -22,7 +30,7 @@ const Login = () => {
                 value={input.email}
                 style={styles.inputField}
                 placeholder="Enter your email adress"
-                onChange={email => console.log(email)}
+                onChangeText={email => setInput({...input, email})}
               />
             </View>
             <View style={styles.inputBox}>
@@ -30,7 +38,7 @@ const Login = () => {
                 value={input.password}
                 style={styles.inputField}
                 placeholder="Enter your password"
-                onChange={password => setInput({...input, password})}
+                onChangeText={password => setInput({...input, password})}
               />
             </View>
             <Text style={styles.forgotText}>Forgot password?</Text>
@@ -39,6 +47,7 @@ const Login = () => {
                 buttonStyle={styles.btnStyle}
                 title="Login"
                 color="#FFBA33"
+                onPress={handleLogin}
               />
             </View>
           </View>
