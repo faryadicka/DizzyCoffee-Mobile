@@ -1,14 +1,34 @@
 import React from 'react';
-// import {Text, View, Image} from 'react-native';
+// import {Text, View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
-// import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 import Welcome from './screens/Welcome/index';
 import Login from './screens/Login/index';
 import Register from './screens/Register/index';
 import Forgot from './screens/Forgot/index';
 import Landing from './screens/Landing/index';
 import Home from './screens/Home/index';
-// import HeaderRight from './components/Header/index';
+import MyDrawer from './screens/Drawer/index';
+import HeaderRight from './components/Header/index';
+const DrawerNav = () => {
+  const {Navigator, Screen} = createDrawerNavigator();
+  return (
+    <Navigator
+      screenOptions={{
+        headerTitle: '',
+        drawerStyle: {
+          backgroundColor: '#ffffff00',
+        },
+      }}
+      drawerContent={props => <MyDrawer {...props} />}>
+      <Screen
+        name="Main"
+        component={Home}
+        options={{headerRight: () => <HeaderRight />}}
+      />
+    </Navigator>
+  );
+};
 
 const App = () => {
   const {Navigator, Screen} = createStackNavigator();
@@ -19,7 +39,7 @@ const App = () => {
       <Screen name="Login" component={Login} />
       <Screen name="Register" component={Register} />
       <Screen name="Forgot" component={Forgot} />
-      <Screen name="Home" component={Home} />
+      <Screen name="Home" component={DrawerNav} />
     </Navigator>
   );
 };

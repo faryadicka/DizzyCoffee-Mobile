@@ -34,6 +34,16 @@ const Home = ({navigation}) => {
                 color="#FFBA33"
               />
             </View>
+            <View style={styles.loginBtn}>
+              <Button
+                buttonStyle={styles.btnStyle}
+                onPress={() => {
+                  navigation.navigate('Home');
+                }}
+                title="Home"
+                color="#FFBA33"
+              />
+            </View>
           </View>
         </View>
       </ImageBackground>

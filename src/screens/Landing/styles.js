@@ -26,7 +26,7 @@ export default StyleSheet.create({
     color: '#fff',
   },
   containerBtn: {
-    marginTop: 220,
+    marginTop: 120,
   },
   loginBtn: {
     marginTop: 15,

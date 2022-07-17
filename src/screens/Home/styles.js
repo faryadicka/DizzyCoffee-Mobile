@@ -23,9 +23,15 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  categoryWrap: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
   textColor: {
-    color: '#6A4029',
-    marginLeft: 40,
+    color: '#9A9A9D',
     marginTop: 20,
   },
 });
