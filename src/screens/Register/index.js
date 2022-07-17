@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, ImageBackground} from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 import {registerAxios} from '../../modules/auth';
 import {Button} from '@rneui/themed';
 import styles from './styles';
@@ -15,6 +16,7 @@ const CustomTitle = () => {
 };
 const Register = ({navigation}) => {
   const [showModal, setShowModal] = useState(false);
+  const [showPass, setShowPass] = useState(false);
   const [isError, setIseError] = useState(false);
   const [message, setMessage] = useState({
     err: '',
@@ -62,10 +64,19 @@ const Register = ({navigation}) => {
               </View>
               <View style={styles.inputBox}>
                 <TextInput
+                  secureTextEntry={!showPass}
                   style={styles.inputField}
                   placeholder="Enter your password"
                   onChangeText={password => setInput({...input, password})}
                   value={input.password}
+                />
+                <Icon
+                  name={showPass ? 'eye' : 'eye-off'}
+                  size={20}
+                  color="#fff"
+                  onPress={() => {
+                    setShowPass(!showPass);
+                  }}
                 />
               </View>
               <View style={styles.inputBox}>

@@ -5,9 +5,13 @@ export default StyleSheet.create({
     borderBottomColor: 'white',
     borderBottomWidth: 1,
     marginTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   inputField: {
     color: 'white',
+    // width: 100,
   },
   BgImage: {
     flex: 1,

@@ -4,7 +4,10 @@ export default StyleSheet.create({
   inputBox: {
     borderBottomColor: 'white',
     borderBottomWidth: 1,
-    marginTop: 20,
+    marginTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   inputField: {
     color: 'white',

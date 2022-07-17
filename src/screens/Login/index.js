@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {View, Text, TextInput, ImageBackground} from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 import {Button} from '@rneui/base';
 import {loginAction} from '../../redux/actionCreator/auth';
 import styles from './styles';
@@ -9,6 +10,7 @@ import bgImage from '../../assets/img/bglogin.png';
 
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
+  const [showPass, setShowPass] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isError, setIseError] = useState(false);
   const [message, setMessage] = useState({
@@ -56,10 +58,19 @@ const Login = ({navigation}) => {
               </View>
               <View style={styles.inputBox}>
                 <TextInput
+                  secureTextEntry={!showPass}
                   value={input.password}
                   style={styles.inputField}
                   placeholder="Enter your password"
                   onChangeText={password => setInput({...input, password})}
+                />
+                <Icon
+                  name={showPass ? 'eye' : 'eye-off'}
+                  size={20}
+                  color="#fff"
+                  onPress={() => {
+                    setShowPass(!showPass);
+                  }}
                 />
               </View>
               <Text style={styles.forgotText}>Forgot password?</Text>
