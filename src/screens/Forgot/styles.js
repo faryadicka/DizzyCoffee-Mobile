@@ -22,7 +22,7 @@ export default StyleSheet.create({
     textAlign: 'center',
   },
   inputField: {
-    color: 'black',
+    color: 'white',
   },
   inputBox: {
     borderBottomColor: 'white',

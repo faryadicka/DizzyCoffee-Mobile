@@ -73,7 +73,13 @@ const Login = ({navigation}) => {
                   }}
                 />
               </View>
-              <Text style={styles.forgotText}>Forgot password?</Text>
+              <Text
+                onPress={() => {
+                  navigation.navigate('Forgot');
+                }}
+                style={styles.forgotText}>
+                Forgot password?
+              </Text>
               <View style={styles.Button}>
                 <Button
                   buttonStyle={styles.btnStyle}
