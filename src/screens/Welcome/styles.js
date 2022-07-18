@@ -15,7 +15,7 @@ export default StyleSheet.create({
     flex: 1,
   },
   welcomeBtn: {
-    marginTop: 300,
+    marginTop: 250,
   },
   bgShadow: {
     padding: 25,

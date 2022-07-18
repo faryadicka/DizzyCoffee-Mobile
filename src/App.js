@@ -49,7 +49,7 @@ const DrawerNav = ({navigation}) => {
       />
       <Screen
         options={{
-          headerStyle: {backgroundColor: '#f5279100', shadowColor: '#f5279100'},
+          headerStyle: {backgroundColor: '#F2F2F2', shadowColor: '#ffffff00'},
           headerTitle: '',
           headerLeft: () => (
             <View style={{paddingLeft: 20}}>
@@ -58,6 +58,18 @@ const DrawerNav = ({navigation}) => {
                   navigation.navigate('Main');
                 }}
                 name="chevron-back-outline"
+                size={20}
+                color="black"
+              />
+            </View>
+          ),
+          headerRight: () => (
+            <View style={{paddingRight: 20}}>
+              <Ion
+                onPress={() => {
+                  navigation.navigate('Cart');
+                }}
+                name="cart-outline"
                 size={20}
                 color="black"
               />

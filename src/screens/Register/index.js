@@ -113,6 +113,7 @@ const Register = ({navigation}) => {
         title={!isError ? message.success : message.err}
         status={isError}
         route="Login"
+        setShow={setShowModal}
       />
     </>
   );

@@ -67,6 +67,7 @@ const Forgot = ({navigation}) => {
         title={!isError ? message.success : message.err}
         status={isError}
         route="Login"
+        setShow={setShowModal}
       />
     </>
   );

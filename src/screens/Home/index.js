@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, TextInput, Image} from 'react-native';
+import {View, Text, TextInput, Image, ScrollView} from 'react-native';
 import styles from './styles';
 import Bsearch from '../../assets/img/bsearch.png';
 import {getProductsAxios, getFavoriteAxios} from '../../modules/products';
@@ -17,8 +17,8 @@ const Home = ({route, navigation}) => {
     favorite: 'favorite',
   });
   const {params = paramsCostum} = route;
-  const getFavoriteHome = favorite => {
-    getFavoriteAxios(favorite)
+  const getFavoriteHome = favorites => {
+    getFavoriteAxios(favorites)
       .then(res => {
         console.log(res);
         setFavorite(res.data?.data);
@@ -113,7 +113,7 @@ const Home = ({route, navigation}) => {
           See more
         </Text>
       </View>
-      <View style={styles.cardsWrap}>
+      <ScrollView horizontal={true} style={styles.cardsWrap}>
         {route.params?.favorite === 'favorite'
           ? favorite.map(item => (
               <CardProducts
@@ -135,7 +135,7 @@ const Home = ({route, navigation}) => {
                 navigation={navigation}
               />
             ))}
-      </View>
+      </ScrollView>
     </View>
   );
 };

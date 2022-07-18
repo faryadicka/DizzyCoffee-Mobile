@@ -99,6 +99,7 @@ const Login = ({navigation}) => {
         title={!isError ? message.success : message.err}
         status={isError}
         route="Home"
+        setShow={setShowModal}
       />
     </>
   );

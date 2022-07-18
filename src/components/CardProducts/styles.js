@@ -7,7 +7,7 @@ export default StyleSheet.create({
     width: 180,
     backgroundColor: 'white',
     borderRadius: 30,
-    paddingTop: 120,
+    paddingTop: 130,
     position: 'relative',
   },
   title: {

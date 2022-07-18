@@ -5,3 +5,8 @@ export const REJECTED = '_REJECTED';
 
 //ReqAxios
 export const AUTHLOGIN = 'AUTH_LOGIN';
+
+//Action
+export const ADDTOCART = 'ADD_CART';
+export const COUNTDEC = 'DECREMENT';
+export const COUNTINC = 'INCREMENT';

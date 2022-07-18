@@ -39,5 +39,11 @@ export default StyleSheet.create({
     borderRadius: 15,
     padding: 10,
     elevation: 2,
+    width: 100,
+  },
+  closeButton: {
+    position: 'absolute',
+    top: 10,
+    left: 240,
   },
 });

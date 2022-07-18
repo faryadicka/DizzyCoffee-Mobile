@@ -41,12 +41,10 @@ export default StyleSheet.create({
     borderBottomWidth: 2,
   },
   cardsWrap: {
-    display: 'flex',
-    flexDirection: 'row',
     paddingLeft: 10,
     paddingRight: 10,
     marginLeft: 30,
-    marginTop: 50,
+    marginTop: 40,
   },
   viewAll: {
     display: 'flex',
