@@ -1,4 +1,5 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import {Text, View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -12,9 +13,12 @@ import Home from './screens/Home/index';
 import Favorite from './screens/Favorite/index';
 import ProductDetail from './screens/ProductDetail/index';
 import MyDrawer from './screens/Drawer/index';
+import Cart from './screens/Cart/index';
+import Payment from './screens/Payment/index';
 import HeaderRight from './components/Header/index';
 
 const DrawerNav = ({navigation}) => {
+  const id = useSelector(state => state.cart.id);
   const {Navigator, Screen} = createDrawerNavigator();
   return (
     <Navigator
@@ -37,7 +41,7 @@ const DrawerNav = ({navigation}) => {
             <View style={{paddingLeft: 20}}>
               <Ion
                 onPress={() => {
-                  navigation.navigate('Main');
+                  navigation.push('Main');
                 }}
                 name="chevron-back-outline"
                 size={20}
@@ -49,13 +53,13 @@ const DrawerNav = ({navigation}) => {
       />
       <Screen
         options={{
-          headerStyle: {backgroundColor: '#F2F2F2', shadowColor: '#ffffff00'},
+          headerStyle: {backgroundColor: '#F2F2F2'},
           headerTitle: '',
           headerLeft: () => (
             <View style={{paddingLeft: 20}}>
               <Ion
                 onPress={() => {
-                  navigation.navigate('Main');
+                  navigation.push('Main');
                 }}
                 name="chevron-back-outline"
                 size={20}
@@ -67,7 +71,7 @@ const DrawerNav = ({navigation}) => {
             <View style={{paddingRight: 20}}>
               <Ion
                 onPress={() => {
-                  navigation.navigate('Cart');
+                  navigation.push('Cart');
                 }}
                 name="cart-outline"
                 size={20}
@@ -78,6 +82,54 @@ const DrawerNav = ({navigation}) => {
         }}
         name="ProductDetail"
         component={ProductDetail}
+      />
+      <Screen
+        name="Cart"
+        component={Cart}
+        options={{
+          headerStyle: {
+            backgroundColor: '#ECECEC',
+          },
+          headerTitleAlign: 'center',
+          headerTitleStyle: {fontWeight: '800'},
+          headerTitle: 'Cart',
+          headerLeft: () => (
+            <View style={{paddingLeft: 20}}>
+              <Ion
+                onPress={() => {
+                  navigation.navigate('ProductDetail', {id: Number(id)});
+                }}
+                name="chevron-back-outline"
+                size={20}
+                color="black"
+              />
+            </View>
+          ),
+        }}
+      />
+      <Screen
+        name="Payment"
+        component={Payment}
+        options={{
+          headerStyle: {
+            backgroundColor: '#ECECEC',
+          },
+          headerTitleAlign: 'center',
+          headerTitleStyle: {fontWeight: '800'},
+          headerTitle: 'Checkout',
+          headerLeft: () => (
+            <View style={{paddingLeft: 20}}>
+              <Ion
+                onPress={() => {
+                  navigation.push('Cart');
+                }}
+                name="chevron-back-outline"
+                size={20}
+                color="black"
+              />
+            </View>
+          ),
+        }}
       />
     </Navigator>
   );

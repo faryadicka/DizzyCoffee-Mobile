@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, Image} from 'react-native';
-// import {Button} from 'react-native-paper';
 import {Button} from '@rneui/base';
 import styles from './styles';
 import {getDetailAxios} from '../../modules/products';
@@ -17,7 +16,6 @@ function ProductDetail({route, navigation}) {
   const getDetail = id => {
     getDetailAxios(id)
       .then(res => {
-        console.log(res);
         setProduct(res.data?.data);
       })
       .catch(err => {
@@ -27,7 +25,6 @@ function ProductDetail({route, navigation}) {
   useEffect(() => {
     getDetail(route.params.id);
   }, [route]);
-  console.log(size);
   return (
     <>
       <View style={styles.containerDetail}>
@@ -75,7 +72,15 @@ function ProductDetail({route, navigation}) {
       <View style={styles.deliveryInfo}>
         <Button
           onPress={() => {
-            dispatch(addCartAction(product.name, product.price, size));
+            dispatch(
+              addCartAction(
+                product.name,
+                product.price,
+                size,
+                product.image,
+                route.params.id,
+              ),
+            );
             setShowModal(true);
           }}
           title="Add to cart"

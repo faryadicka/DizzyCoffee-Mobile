@@ -1,8 +1,6 @@
 import axios from 'axios';
 import {URL_DEPLOY} from '@env';
 
-// const URL_DEPLOY = 'https://dizzy-coffeeshop.herokuapp.com';
-
 export const getProductsAxios = (
   category = '',
   search = '',

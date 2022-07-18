@@ -32,7 +32,8 @@ export default StyleSheet.create({
     fontWeight: '100',
   },
   containerList: {
-    padding: 30,
+    paddingLeft: 30,
+    paddingRight: 30,
   },
   listNav: {
     display: 'flex',
@@ -54,7 +55,7 @@ export default StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 80,
+    marginTop: 50,
   },
   textNav: {
     color: '#6A4029',

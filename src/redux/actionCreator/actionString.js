@@ -8,5 +8,5 @@ export const AUTHLOGIN = 'AUTH_LOGIN';
 
 //Action
 export const ADDTOCART = 'ADD_CART';
-export const COUNTDEC = 'DECREMENT';
-export const COUNTINC = 'INCREMENT';
+export const CLEARCART = 'CLEAR_CART';
+export const SETQUANTITY = 'SET_QUANTITY';

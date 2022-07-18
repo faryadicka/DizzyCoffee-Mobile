@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, Image} from 'react-native';
+import {Text, View, Image, Pressable} from 'react-native';
 import styles from './styles';
 import Avatar from '../../assets/img/avaNav.png';
 import Evil from 'react-native-vector-icons/EvilIcons';
@@ -37,10 +37,14 @@ const MyDrawer = ({navigation}) => {
           <Awesome5 name="shield-alt" size={25} color="#6A4029" />
           <Text style={styles.textNav}>Security</Text>
         </View>
-        <View style={styles.listNavSignOut}>
+        <Pressable
+          onPress={() => {
+            navigation.navigate('Home');
+          }}
+          style={styles.listNavSignOut}>
           <Text style={styles.textNav}>Sign-out</Text>
           <Awesome name="long-arrow-right" size={25} color="#6A4029" />
-        </View>
+        </Pressable>
       </View>
     </View>
   );
