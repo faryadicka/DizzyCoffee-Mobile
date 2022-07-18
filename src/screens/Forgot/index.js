@@ -44,6 +44,7 @@ const Forgot = ({navigation}) => {
             </Text>
             <View style={styles.inputBox}>
               <TextInput
+                placeholderTextColor="white"
                 style={styles.inputField}
                 placeholder="Enter your email adress"
                 onChangeText={text => setEmail(text)}

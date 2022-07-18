@@ -19,14 +19,16 @@ const ModalNav = ({
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <View style={styles.closeButton}>
-              <Evil
-                name="close"
-                size={20}
-                color="black"
-                onPress={() => {
-                  setShow(false);
-                }}
-              />
+              {!status ? (
+                <Evil
+                  name="close"
+                  size={20}
+                  color="black"
+                  onPress={() => {
+                    setShow(false);
+                  }}
+                />
+              ) : null}
             </View>
             <Text style={styles.modalText}>{title}</Text>
             <Button
@@ -34,6 +36,7 @@ const ModalNav = ({
               onPress={
                 !status
                   ? () => {
+                      setShow(false);
                       navigation.navigate(route);
                     }
                   : hide

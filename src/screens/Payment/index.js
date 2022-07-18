@@ -2,17 +2,19 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, TextInput} from 'react-native';
 import {Button} from '@rneui/base';
 import {RadioButton} from 'react-native-paper';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import styles from './styles';
 import {getProfileAxios} from '../../modules/user';
+import {setCheckoutAction} from '../../redux/actionCreator/cart';
 
-const Payment = () => {
+const Payment = ({navigation}) => {
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const [change, setChange] = useState(false);
   const [checked, setChecked] = React.useState('Dine in');
   const tokenRedux = useSelector(state => state.auth.dataLogin?.token);
   const cart = useSelector(state => state.cart);
+  const dispatch = useDispatch();
   const getProfile = token => {
     getProfileAxios(token)
       .then(res => {
@@ -92,6 +94,10 @@ const Payment = () => {
         <Text style={styles.titleAddress}>IDR {cart.total}</Text>
       </View>
       <Button
+        onPress={() => {
+          dispatch(setCheckoutAction(address, phone, checked));
+          navigation.navigate('Confirm');
+        }}
         title="Proceed to payment"
         color="#6A4029"
         buttonStyle={styles.btnCheckout}

@@ -93,7 +93,7 @@ function ProductDetail({route, navigation}) {
         hide={() => setShowModal(!showModal)}
         navigation={navigation}
         title="Product added to cart successfully"
-        status={false}
+        status={true}
         route="Cart"
         setShow={setShowModal}
       />

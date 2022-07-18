@@ -50,6 +50,7 @@ const Login = ({navigation}) => {
             <View style={styles.containerInput}>
               <View style={styles.inputBox}>
                 <TextInput
+                  placeholderTextColor="white"
                   value={input.email}
                   style={styles.inputField}
                   placeholder="Enter your email adress"
@@ -58,6 +59,7 @@ const Login = ({navigation}) => {
               </View>
               <View style={styles.inputBox}>
                 <TextInput
+                  placeholderTextColor="white"
                   secureTextEntry={!showPass}
                   value={input.password}
                   style={styles.inputField}

@@ -16,6 +16,7 @@ import MyDrawer from './screens/Drawer/index';
 import Cart from './screens/Cart/index';
 import Payment from './screens/Payment/index';
 import HeaderRight from './components/Header/index';
+import Confirm from './screens/Confirm';
 
 const DrawerNav = ({navigation}) => {
   const id = useSelector(state => state.cart.id);
@@ -37,11 +38,15 @@ const DrawerNav = ({navigation}) => {
         name="Favorite"
         component={Favorite}
         options={{
+          headerStyle: {
+            backgroundColor: '#F2F2F2',
+          },
+          headerTitle: '',
           headerLeft: () => (
             <View style={{paddingLeft: 20}}>
               <Ion
                 onPress={() => {
-                  navigation.push('Main');
+                  navigation.navigate('Main');
                 }}
                 name="chevron-back-outline"
                 size={20}
@@ -59,7 +64,7 @@ const DrawerNav = ({navigation}) => {
             <View style={{paddingLeft: 20}}>
               <Ion
                 onPress={() => {
-                  navigation.push('Main');
+                  navigation.navigate('Main');
                 }}
                 name="chevron-back-outline"
                 size={20}
@@ -71,7 +76,7 @@ const DrawerNav = ({navigation}) => {
             <View style={{paddingRight: 20}}>
               <Ion
                 onPress={() => {
-                  navigation.push('Cart');
+                  navigation.navigate('Cart');
                 }}
                 name="cart-outline"
                 size={20}
@@ -121,7 +126,31 @@ const DrawerNav = ({navigation}) => {
             <View style={{paddingLeft: 20}}>
               <Ion
                 onPress={() => {
-                  navigation.push('Cart');
+                  navigation.navigate('Cart');
+                }}
+                name="chevron-back-outline"
+                size={20}
+                color="black"
+              />
+            </View>
+          ),
+        }}
+      />
+      <Screen
+        name="Confirm"
+        component={Confirm}
+        options={{
+          headerStyle: {
+            backgroundColor: '#ECECEC',
+          },
+          headerTitleAlign: 'center',
+          headerTitleStyle: {fontWeight: '800'},
+          headerTitle: 'Payment',
+          headerLeft: () => (
+            <View style={{paddingLeft: 20}}>
+              <Ion
+                onPress={() => {
+                  navigation.navigate('Payment');
                 }}
                 name="chevron-back-outline"
                 size={20}

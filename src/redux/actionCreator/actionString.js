@@ -9,4 +9,4 @@ export const AUTHLOGIN = 'AUTH_LOGIN';
 //Action
 export const ADDTOCART = 'ADD_CART';
 export const CLEARCART = 'CLEAR_CART';
-export const SETQUANTITY = 'SET_QUANTITY';
+export const SETCHECKOUT = 'SET_CHECKOUT';

@@ -20,17 +20,15 @@ const Home = ({route, navigation}) => {
   const getFavoriteHome = favorites => {
     getFavoriteAxios(favorites)
       .then(res => {
-        console.log(res);
         setFavorite(res.data?.data);
       })
       .catch(err => {
         console.log(err);
       });
   };
-  const getProductsHome = (category, search, sort, order) => {
-    getProductsAxios(category, search, sort, order)
+  const getProductsHome = (category, search, sort, order, page, limit) => {
+    getProductsAxios(category, search, sort, order, page, limit)
       .then(res => {
-        console.log(res);
         setProducts(res.data?.data);
       })
       .catch(err => {
@@ -39,7 +37,14 @@ const Home = ({route, navigation}) => {
       });
   };
   useEffect(() => {
-    getProductsHome(params.category, params.search, params.sort, params.order);
+    getProductsHome(
+      params.category,
+      params.search,
+      params.sort,
+      params.order,
+      1,
+      4,
+    );
     getFavoriteHome(params.favorite);
   }, [
     params.category,
@@ -48,7 +53,6 @@ const Home = ({route, navigation}) => {
     params.order,
     params.favorite,
   ]);
-  console.log(route);
   return (
     <View style={styles.homeContainer}>
       <View style={styles.textContainer}>
@@ -107,7 +111,13 @@ const Home = ({route, navigation}) => {
         <Text style={styles.textViewAll}>All</Text>
         <Text
           onPress={() => {
-            navigation.navigate('Favorite');
+            route.params?.favorite === 'favorite'
+              ? navigation.navigate('Favorite', {favorite: 'favorite'})
+              : route.params.category === 1
+              ? navigation.navigate('Favorite', {category: 1})
+              : route.params.category === 2
+              ? navigation.navigate('Favorite', {category: 2})
+              : navigation.navigate('Favorite', {category: 3});
           }}
           style={styles.textViewAll}>
           See more

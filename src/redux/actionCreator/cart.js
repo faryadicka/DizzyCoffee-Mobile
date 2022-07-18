@@ -1,4 +1,4 @@
-import {ADDTOCART, SETQUANTITY} from './actionString';
+import {ADDTOCART, CLEARCART, SETCHECKOUT} from './actionString';
 
 export const addCartAction = (name, price, size, image, id, total, qty) => {
   return {
@@ -11,6 +11,26 @@ export const addCartAction = (name, price, size, image, id, total, qty) => {
       id,
       total,
       qty,
+    },
+  };
+};
+
+export const setCheckoutAction = (address, phone, delivery) => {
+  return {
+    type: SETCHECKOUT,
+    payload: {
+      address,
+      phone,
+      delivery,
+    },
+  };
+};
+
+export const clearCartAction = clear => {
+  return {
+    type: CLEARCART,
+    payload: {
+      clear,
     },
   };
 };

@@ -1,4 +1,4 @@
-import {ADDTOCART} from '../actionCreator/actionString';
+import {ADDTOCART, CLEARCART, SETCHECKOUT} from '../actionCreator/actionString';
 
 const initialState = {
   name: '',
@@ -8,6 +8,9 @@ const initialState = {
   image: '',
   id: '',
   total: 0,
+  delivery: '',
+  address: '',
+  phone: '',
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -15,6 +18,13 @@ const cartReducer = (state = initialState, action) => {
     case ADDTOCART:
       const {name, price, size, image, id, qty, total} = action.payload;
       return {...state, name, price, size, image, id, qty, total};
+    case SETCHECKOUT:
+      const {address, phone, delivery} = action.payload;
+      return {...state, address, phone, delivery};
+    case CLEARCART:
+      const {clear} = action.payload;
+      state = clear;
+      return {...state};
     default:
       return state;
   }

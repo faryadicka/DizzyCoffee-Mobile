@@ -44,7 +44,7 @@ export default StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     marginLeft: 30,
-    marginTop: 40,
+    marginTop: 30,
   },
   viewAll: {
     display: 'flex',

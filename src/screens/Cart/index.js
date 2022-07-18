@@ -60,7 +60,7 @@ const Cart = ({navigation}) => {
               cart.size,
               cart.image,
               id,
-              Number(formatToCurrency(cart.price * qty)),
+              formatToCurrency(cart.price * qty),
               qty,
             ),
           );

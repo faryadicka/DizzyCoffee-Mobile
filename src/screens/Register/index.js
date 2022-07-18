@@ -56,6 +56,7 @@ const Register = ({navigation}) => {
             <View style={styles.containerInput}>
               <View style={styles.inputBox}>
                 <TextInput
+                  placeholderTextColor="white"
                   style={styles.inputField}
                   placeholder="Enter your email adress"
                   onChangeText={email => setInput({...input, email})}
@@ -64,6 +65,7 @@ const Register = ({navigation}) => {
               </View>
               <View style={styles.inputBox}>
                 <TextInput
+                  placeholderTextColor="white"
                   secureTextEntry={!showPass}
                   style={styles.inputField}
                   placeholder="Enter your password"
@@ -81,6 +83,7 @@ const Register = ({navigation}) => {
               </View>
               <View style={styles.inputBox}>
                 <TextInput
+                  placeholderTextColor="white"
                   style={styles.inputField}
                   placeholder="Enter your phone number"
                   onChangeText={phone => setInput({...input, phone})}
