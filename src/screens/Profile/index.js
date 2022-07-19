@@ -48,8 +48,8 @@ const Profile = () => {
           </Pressable>
         </View>
         <Text style={styles.fullname}>
-          {profile.first_name
-            ? `${profile.first_name} ${profile.last_name}`
+          {profile.display_name
+            ? `${profile.display_name}`
             : '<< Your Fullname >>'}
         </Text>
         <Text style={styles.Description}>
