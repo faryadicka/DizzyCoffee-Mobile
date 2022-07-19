@@ -15,6 +15,8 @@ import ProductDetail from './screens/ProductDetail/index';
 import MyDrawer from './screens/Drawer/index';
 import Cart from './screens/Cart/index';
 import Payment from './screens/Payment/index';
+import Profile from './screens/Profile/index';
+import EditProfile from './screens/EditProfile/index';
 import HeaderRight from './components/Header/index';
 import Confirm from './screens/Confirm';
 
@@ -27,12 +29,19 @@ const DrawerNav = ({navigation}) => {
         drawerStyle: {
           backgroundColor: '#ffffff00',
         },
+        headerShadowVisible: false,
       }}
       drawerContent={props => <MyDrawer {...props} />}>
       <Screen
         name="Main"
         component={Home}
-        options={{headerRight: () => <HeaderRight />, headerTitle: ''}}
+        options={{
+          headerStyle: {
+            backgroundColor: '#F2F2F2',
+          },
+          headerRight: () => <HeaderRight navigation={navigation} />,
+          headerTitle: '',
+        }}
       />
       <Screen
         name="Favorite"
@@ -41,7 +50,8 @@ const DrawerNav = ({navigation}) => {
           headerStyle: {
             backgroundColor: '#F2F2F2',
           },
-          headerTitle: '',
+          headerTitleStyle: {fontWeight: '900'},
+          headerTitle: 'Favorite Products',
           headerLeft: () => (
             <View style={{paddingLeft: 20}}>
               <Ion
@@ -59,7 +69,9 @@ const DrawerNav = ({navigation}) => {
       <Screen
         options={{
           headerStyle: {backgroundColor: '#F2F2F2'},
-          headerTitle: '',
+          headerTitle: 'Product Detail',
+          headerTitleStyle: {fontWeight: '900'},
+          headerTitleAlign: 'center',
           headerLeft: () => (
             <View style={{paddingLeft: 20}}>
               <Ion
@@ -151,6 +163,54 @@ const DrawerNav = ({navigation}) => {
               <Ion
                 onPress={() => {
                   navigation.navigate('Payment');
+                }}
+                name="chevron-back-outline"
+                size={20}
+                color="black"
+              />
+            </View>
+          ),
+        }}
+      />
+      <Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          headerStyle: {
+            backgroundColor: '#ECECEC',
+          },
+          headerTitleAlign: 'center',
+          headerTitleStyle: {fontWeight: '800'},
+          headerTitle: 'My Profile',
+          headerLeft: () => (
+            <View style={{paddingLeft: 20}}>
+              <Ion
+                onPress={() => {
+                  navigation.navigate('Main');
+                }}
+                name="chevron-back-outline"
+                size={20}
+                color="black"
+              />
+            </View>
+          ),
+        }}
+      />
+      <Screen
+        name="EditProfile"
+        component={EditProfile}
+        options={{
+          headerStyle: {
+            backgroundColor: '#ECECEC',
+          },
+          headerTitleAlign: 'center',
+          headerTitleStyle: {fontWeight: '800'},
+          headerTitle: 'Edit Profile',
+          headerLeft: () => (
+            <View style={{paddingLeft: 20}}>
+              <Ion
+                onPress={() => {
+                  navigation.navigate('Main');
                 }}
                 name="chevron-back-outline"
                 size={20}

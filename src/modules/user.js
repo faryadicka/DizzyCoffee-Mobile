@@ -7,3 +7,10 @@ export const getProfileAxios = token => {
     headers: {'x-access-token': token, 'Access-Control-Allow-Origin': '*'},
   });
 };
+
+export const updateProfileAxios = (body, token) => {
+  const URL = `${URL_DEPLOY}/api/users/profile`;
+  return axios.patch(URL, body, {
+    headers: {'x-access-token': token, 'Access-Control-Allow-Origin': '*'},
+  });
+};

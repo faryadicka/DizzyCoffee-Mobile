@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, ScrollView} from 'react-native';
 import {Button} from '@rneui/base';
 import styles from './styles';
 import {getDetailAxios} from '../../modules/products';
@@ -26,7 +26,7 @@ function ProductDetail({route, navigation}) {
     getDetail(route.params.id);
   }, [route]);
   return (
-    <>
+    <ScrollView>
       <View style={styles.containerDetail}>
         <Image source={{uri: product.image}} style={styles.image} />
         <Text style={styles.titleName}>{product.name}</Text>
@@ -97,7 +97,7 @@ function ProductDetail({route, navigation}) {
         route="Cart"
         setShow={setShowModal}
       />
-    </>
+    </ScrollView>
   );
 }
 

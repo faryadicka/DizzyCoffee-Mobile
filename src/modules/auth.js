@@ -15,3 +15,8 @@ export const forgotAxios = body => {
   const URL = `${URL_DEPLOY}/api/auth/forgot`;
   return axios.post(URL, body);
 };
+
+export const resetAxios = body => {
+  const URL = `${URL_DEPLOY}/api/auth/reset-password`;
+  return axios.patch(URL, body);
+};

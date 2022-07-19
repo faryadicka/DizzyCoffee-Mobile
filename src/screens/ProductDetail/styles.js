@@ -6,6 +6,7 @@ export default StyleSheet.create({
     paddingLeft: 40,
     paddingRight: 40,
     paddingTop: 10,
+    paddingBottom: 20,
     alignItems: 'center',
   },
   image: {
@@ -29,7 +30,8 @@ export default StyleSheet.create({
     textAlign: 'left',
     paddingLeft: 40,
     paddingRight: 40,
-    marginTop: 8,
+    marginTop: 10,
+    marginBottom: 20,
   },
   titleDelivery: {
     color: 'black',

@@ -4,6 +4,7 @@ import styles from './styles';
 import {formatToCurrency} from '../../helpers/formatToCurrency';
 
 function CardProducts({id, image, title, price, navigation}) {
+  // console.log(image);
   return (
     <Pressable
       onPress={() => {

@@ -11,7 +11,7 @@ export default StyleSheet.create({
   },
   inputField: {
     color: 'white',
-    // width: 100,
+    width: '80%',
   },
   BgImage: {
     flex: 1,
@@ -20,13 +20,13 @@ export default StyleSheet.create({
     fontSize: 65,
     color: 'white',
     textAlign: 'center',
-    marginTop: 120,
+    marginTop: 80,
   },
   containerRegister: {
     flex: 1,
   },
   containerInput: {
-    marginTop: 90,
+    marginTop: 60,
   },
   Button: {
     marginTop: 20,

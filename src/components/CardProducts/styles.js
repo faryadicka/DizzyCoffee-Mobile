@@ -3,12 +3,15 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   cardContainer: {
     marginLeft: 15,
-    padding: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
     width: 180,
     backgroundColor: 'white',
     borderRadius: 30,
     paddingTop: 130,
+    paddingBottom: 15,
     position: 'relative',
+    top: 30,
   },
   title: {
     color: 'black',
@@ -24,8 +27,8 @@ export default StyleSheet.create({
     position: 'absolute',
     width: 140,
     height: 140,
-    borderRadius: 10,
-    bottom: 70,
+    borderRadius: 15,
+    bottom: 60,
     left: 21,
   },
 });

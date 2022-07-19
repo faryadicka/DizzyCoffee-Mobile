@@ -19,12 +19,14 @@ function SeeMore({route, navigation}) {
   const {params = paramsCostum} = route;
   const titleScreen =
     route.params?.favorite === 'favorite'
-      ? 'Favorite'
+      ? 'Favorite Products'
       : route.params?.category === 1
-      ? 'Coffee'
+      ? 'Coffee Products'
       : route.params?.category === 2
-      ? 'Non Coffee'
-      : 'Foods';
+      ? 'Non Coffee Products'
+      : route.params?.category === 3
+      ? 'Foods'
+      : 'All Products';
   const getFavoriteHome = favorites => {
     getFavoriteAxios(favorites)
       .then(res => {

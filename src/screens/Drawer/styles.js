@@ -18,6 +18,8 @@ export default StyleSheet.create({
   },
   Avatar: {
     borderRadius: 100,
+    width: 80,
+    height: 80,
   },
   nameDrawer: {
     marginTop: 10,

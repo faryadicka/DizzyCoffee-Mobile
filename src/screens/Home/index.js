@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, TextInput, Image, ScrollView} from 'react-native';
 import styles from './styles';
 import Bsearch from '../../assets/img/bsearch.png';
+import Loader from '../../assets/gif/loader-small.gif';
 import {getProductsAxios, getFavoriteAxios} from '../../modules/products';
 import CardProducts from '../../components/CardProducts';
 
@@ -113,38 +114,51 @@ const Home = ({route, navigation}) => {
           onPress={() => {
             route.params?.favorite === 'favorite'
               ? navigation.navigate('Favorite', {favorite: 'favorite'})
-              : route.params.category === 1
+              : route.params?.category === 1
               ? navigation.navigate('Favorite', {category: 1})
-              : route.params.category === 2
+              : route.params?.category === 2
               ? navigation.navigate('Favorite', {category: 2})
-              : navigation.navigate('Favorite', {category: 3});
+              : route.params?.category === 3
+              ? navigation.navigate('Favorite', {category: 3})
+              : navigation.navigate('Favorite');
           }}
           style={styles.textViewAll}>
           See more
         </Text>
       </View>
       <ScrollView horizontal={true} style={styles.cardsWrap}>
-        {route.params?.favorite === 'favorite'
-          ? favorite.map(item => (
-              <CardProducts
-                key={item.id}
-                image={item.image}
-                title={item.name}
-                price={item.price}
-                id={item.id}
-                navigation={navigation}
-              />
-            ))
-          : products.map(item => (
-              <CardProducts
-                key={item.id}
-                image={item.image}
-                title={item.name}
-                price={item.price}
-                id={item.id}
-                navigation={navigation}
-              />
-            ))}
+        {products.length <= 0 || favorite.length <= 0 ? (
+          <View style={styles.Loading}>
+            <Image
+              source={require('../../assets/gif/loader-small.gif')}
+              style={styles.loadingGif}
+            />
+          </View>
+        ) : (
+          <>
+            {route.params?.favorite === 'favorite'
+              ? favorite.map(item => (
+                  <CardProducts
+                    key={item.id}
+                    image={item.image}
+                    title={item.name}
+                    price={item.price}
+                    id={item.id}
+                    navigation={navigation}
+                  />
+                ))
+              : products.map(item => (
+                  <CardProducts
+                    key={item.id}
+                    image={item.image}
+                    title={item.name}
+                    price={item.price}
+                    id={item.id}
+                    navigation={navigation}
+                  />
+                ))}
+          </>
+        )}
       </ScrollView>
     </View>
   );

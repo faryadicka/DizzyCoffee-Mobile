@@ -49,7 +49,7 @@ const Register = ({navigation}) => {
   };
   return (
     <>
-      <View style={styles.containerRegister}>
+      <View keyboardShouldPersistTaps="always" style={styles.containerRegister}>
         <ImageBackground source={bgImage} style={styles.BgImage}>
           <View style={styles.bgShadow}>
             <Text style={styles.headerRegister}>Sign Up</Text>

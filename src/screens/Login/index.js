@@ -43,7 +43,7 @@ const Login = ({navigation}) => {
   };
   return (
     <>
-      <View style={styles.containerLogin}>
+      <View keyboardShouldPersistTaps="always" style={styles.containerLogin}>
         <ImageBackground source={bgImage} style={styles.BgImage}>
           <View style={styles.bgShadow}>
             <Text style={styles.headerLogin}>Login</Text>

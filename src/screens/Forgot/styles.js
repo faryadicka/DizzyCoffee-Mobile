@@ -13,21 +13,35 @@ export default StyleSheet.create({
     backgroundColor: '#0000008a',
   },
   forgotHeader: {
-    marginTop: 80,
+    marginTop: 60,
     fontSize: 75,
     color: '#FFF',
     textAlign: 'center',
+    lineHeight: 75,
+  },
+  ResetHeader: {
+    marginTop: 50,
+    fontSize: 35,
+    color: '#FFF',
+    textAlign: 'center',
+    lineHeight: 75,
   },
   forgotSub: {
     textAlign: 'center',
+    color: 'white',
+    marginBottom: 60,
   },
   inputField: {
     color: 'white',
+    width: '80%',
   },
   inputBox: {
     borderBottomColor: 'white',
     borderBottomWidth: 1,
-    marginTop: 100,
+    marginTop: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   btnStyle: {
     borderRadius: 15,
@@ -36,5 +50,19 @@ export default StyleSheet.create({
   },
   Button: {
     marginTop: 25,
+  },
+  textSuccess: {
+    color: 'white',
+    backgroundColor: 'green',
+    padding: 10,
+    textAlign: 'center',
+    marginTop: 10,
+  },
+  textErr: {
+    color: 'white',
+    backgroundColor: 'red',
+    padding: 10,
+    textAlign: 'center',
+    marginTop: 10,
   },
 });

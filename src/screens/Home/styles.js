@@ -44,7 +44,6 @@ export default StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     marginLeft: 30,
-    marginTop: 30,
   },
   viewAll: {
     display: 'flex',
@@ -62,5 +61,13 @@ export default StyleSheet.create({
   inputSearch: {
     width: 300,
     padding: 10,
+  },
+  Loading: {
+    justifyContent: 'center',
+    textAlign: 'center',
+    width: '100%',
+    position: 'relative',
+    left: 70,
+    bottom: 40,
   },
 });

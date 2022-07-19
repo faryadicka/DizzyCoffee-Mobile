@@ -11,6 +11,7 @@ export default StyleSheet.create({
   },
   inputField: {
     color: 'white',
+    width: '80%',
   },
   BgImage: {
     flex: 1,
@@ -18,12 +19,13 @@ export default StyleSheet.create({
   headerLogin: {
     fontSize: 50,
     color: 'white',
+    marginTop: 50,
   },
   containerLogin: {
     flex: 1,
   },
   containerInput: {
-    marginTop: 220,
+    marginTop: 120,
   },
   forgotText: {
     marginTop: 15,

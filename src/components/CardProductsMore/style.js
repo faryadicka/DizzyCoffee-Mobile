@@ -22,7 +22,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     paddingTop: 90,
     marginTop: 50,
-    height: 170,
+    height: 180,
   },
   titleProduct: {
     marginTop: 10,
@@ -42,8 +42,8 @@ export default StyleSheet.create({
     top: 115,
   },
   imageProduct: {
-    width: 120,
-    height: 120,
+    width: 125,
+    height: 125,
     borderRadius: 60,
     position: 'absolute',
     bottom: 100,
