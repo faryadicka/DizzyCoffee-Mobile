@@ -5,6 +5,7 @@ export const REJECTED = '_REJECTED';
 
 //ReqAxios
 export const AUTHLOGIN = 'AUTH_LOGIN';
+export const USERDATA = 'USER_DATA';
 
 //Action
 export const ADDTOCART = 'ADD_CART';

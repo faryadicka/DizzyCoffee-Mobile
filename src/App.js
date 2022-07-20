@@ -186,7 +186,7 @@ const DrawerNav = ({navigation}) => {
             <View style={{paddingLeft: 20}}>
               <Ion
                 onPress={() => {
-                  navigation.navigate('Main');
+                  navigation.push('Home');
                 }}
                 name="chevron-back-outline"
                 size={20}

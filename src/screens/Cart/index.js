@@ -23,33 +23,40 @@ const Cart = ({navigation}) => {
   return (
     <View style={styles.containerCart}>
       <View style={styles.containerCard}>
-        <Image source={{uri: cart.image}} style={styles.imageCart} />
-        <View>
-          <Text style={styles.titleCart}>{cart.name}</Text>
-          <Text style={styles.sizeCart}>
-            {size} ({cart.size})
-          </Text>
-          <View style={styles.addInfo}>
-            <Text>
-              IDR{' '}
-              {qty >= 0
-                ? formatToCurrency(cart.price * qty)
-                : formatToCurrency(cart.price)}
-            </Text>
-            <View style={styles.qtyCart}>
-              <Pressable onPress={() => (qty <= 0 ? null : setQty(qty - 1))}>
-                <Ant name="minus" color="white" />
-              </Pressable>
-              <Text style={styles.qty}>{qty}</Text>
-              <Pressable
-                onPress={() => {
-                  setQty(qty + 1);
-                }}>
-                <Ant name="plus" color="white" />
-              </Pressable>
+        {cart.size ? (
+          <>
+            <Image source={{uri: cart.image}} style={styles.imageCart} />
+            <View>
+              <Text style={styles.titleCart}>{cart.name}</Text>
+              <Text style={styles.sizeCart}>
+                {size} ({cart.size})
+              </Text>
+              <View style={styles.addInfo}>
+                <Text>
+                  IDR{' '}
+                  {qty >= 0
+                    ? formatToCurrency(cart.price * qty)
+                    : formatToCurrency(cart.price)}
+                </Text>
+                <View style={styles.qtyCart}>
+                  <Pressable
+                    onPress={() => (qty <= 0 ? null : setQty(qty - 1))}>
+                    <Ant name="minus" color="white" />
+                  </Pressable>
+                  <Text style={styles.qty}>{qty}</Text>
+                  <Pressable
+                    onPress={() => {
+                      setQty(qty + 1);
+                    }}>
+                    <Ant name="plus" color="white" />
+                  </Pressable>
+                </View>
+              </View>
             </View>
-          </View>
-        </View>
+          </>
+        ) : (
+          <Text>Cart empty</Text>
+        )}
       </View>
       <Button
         onPress={() => {

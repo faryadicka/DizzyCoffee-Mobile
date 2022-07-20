@@ -11,6 +11,7 @@ import {getAllhistories} from '../../modules/history';
 
 const Profile = () => {
   const tokenRedux = useSelector(state => state.auth.dataLogin?.token);
+  const userData = useSelector(state => state.users.dataUser);
   const [profile, setProfile] = useState({});
   const [histories, setHistories] = useState([]);
   const getProfile = token => {
@@ -40,7 +41,9 @@ const Profile = () => {
       <View style={styles.containerProfile}>
         <View style={styles.containerPhoto}>
           <Image
-            source={profile.image ? {uri: profile.image_profile} : Avatar}
+            source={
+              profile?.image_profile ? {uri: profile?.image_profile} : Avatar
+            }
             style={styles.imageProfile}
           />
           <Pressable style={styles.btnEdit}>
@@ -48,16 +51,14 @@ const Profile = () => {
           </Pressable>
         </View>
         <Text style={styles.fullname}>
-          {profile.display_name
-            ? `${profile.display_name}`
-            : '<< Your Fullname >>'}
+          {profile.display_name ? `${profile.display_name}` : null}
         </Text>
         <Text style={styles.Description}>
           {profile.email}
           {'\n'}
           {`+62 ${profile.phone?.slice(1)}`}
           {'\n'}
-          {profile.address ? profile.address : '<< Your Address >>'}
+          {profile.address ? profile.address : null}
         </Text>
       </View>
       <View style={styles.containerOrder}>

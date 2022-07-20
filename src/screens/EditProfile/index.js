@@ -56,7 +56,7 @@ const EditProfile = ({navigation}) => {
   useEffect(() => {
     getProfile(tokenRedux);
   }, [tokenRedux]);
-
+  console.log(navigation);
   const handlerUpdateProfile = () => {
     updateProfileAxios(body, tokenRedux)
       .then(res => {
@@ -64,6 +64,7 @@ const EditProfile = ({navigation}) => {
         setIsError(false);
         setMessage({...message, success: res.data?.message});
         setShowModal(true);
+        navigation.push('Home');
       })
       .catch(err => {
         setIsError(true);

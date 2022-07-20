@@ -4,12 +4,16 @@ import styles from './styles';
 import Bsearch from '../../assets/img/bsearch.png';
 import Loader from '../../assets/gif/loader-small.gif';
 import {getProductsAxios, getFavoriteAxios} from '../../modules/products';
+import {getUserDataAction} from '../../redux/actionCreator/users';
+import {useSelector, useDispatch} from 'react-redux';
 import CardProducts from '../../components/CardProducts';
 
 const Home = ({route, navigation}) => {
   const [products, setProducts] = useState([]);
   const [favorite, setFavorite] = useState([]);
   const [errMsg, setErrMsg] = useState([]);
+  const tokenRedux = useSelector(state => state.auth.dataLogin?.token);
+  const dispatch = useDispatch();
   const [paramsCostum, setParamsCostum] = useState({
     category: '',
     search: '',
@@ -47,12 +51,15 @@ const Home = ({route, navigation}) => {
       4,
     );
     getFavoriteHome(params.favorite);
+    dispatch(getUserDataAction(tokenRedux));
   }, [
     params.category,
     params.search,
     params.sort,
     params.order,
     params.favorite,
+    dispatch,
+    tokenRedux,
   ]);
   return (
     <View style={styles.homeContainer}>

@@ -7,34 +7,27 @@ import Ion from 'react-native-vector-icons/Ionicons';
 import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import Awesome5 from 'react-native-vector-icons/FontAwesome5';
 import Awesome from 'react-native-vector-icons/FontAwesome';
-import {useSelector} from 'react-redux';
-import {getProfileAxios} from '../../modules/user';
+import {useSelector, useDispatch} from 'react-redux';
+import {getUserDataAction} from '../../redux/actionCreator/users';
 
 const MyDrawer = ({navigation}) => {
   const tokenRedux = useSelector(state => state.auth.dataLogin?.token);
-  const [profile, setProfile] = useState({});
-  const getProfile = token => {
-    getProfileAxios(token)
-      .then(res => {
-        console.log(res);
-        setProfile(res.data?.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+  const userData = useSelector(state => state.users.dataUser);
+  const dispatch = useDispatch();
   useEffect(() => {
-    getProfile(tokenRedux);
-  }, [tokenRedux]);
+    dispatch(getUserDataAction(tokenRedux));
+  }, [tokenRedux, dispatch]);
   return (
     <View style={styles.container}>
       <View style={styles.containerAvatar}>
         <Image
-          source={profile.image ? {uri: profile.image_profile} : Avatar}
+          source={
+            userData?.image_profile ? {uri: userData?.image_profile} : Avatar
+          }
           style={styles.Avatar}
         />
-        <Text style={styles.nameDrawer}>{profile.display_name}</Text>
-        <Text style={styles.emailDrawer}>{profile.email}</Text>
+        <Text style={styles.nameDrawer}>{userData?.display_name}</Text>
+        <Text style={styles.emailDrawer}>{userData?.email}</Text>
       </View>
       <View style={styles.containerList}>
         <Pressable
