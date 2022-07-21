@@ -147,6 +147,7 @@ const Forgot = ({navigation}) => {
               </View>
               <View style={styles.inputBox}>
                 <TextInput
+                  keyboardType="numeric"
                   secureTextEntry={!showOTP}
                   placeholderTextColor="white"
                   style={styles.inputField}
