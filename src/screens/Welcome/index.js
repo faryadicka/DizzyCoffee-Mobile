@@ -10,7 +10,7 @@ const Welcome = ({navigation}) => {
       <ImageBackground source={bgImage} style={styles.BgImage}>
         <View style={styles.bgShadow}>
           <View>
-            <Text style={styles.welcomeHeader}>Coffee For Everyone</Text>
+            <Text style={styles.welcomeHeader}>COFFEE FOR EVERYONE</Text>
             <View style={styles.welcomeBtn}>
               <Button
                 buttonStyle={styles.btnStyle}

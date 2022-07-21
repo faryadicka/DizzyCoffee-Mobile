@@ -44,6 +44,7 @@ function ProductDetail({route, navigation}) {
         <Text style={styles.titleDesc}>Description</Text>
         <Text style={styles.descDelivery}>{product.description}</Text>
       </View>
+      <Text style={styles.Choose}>Choose size product :</Text>
       <View style={styles.wrapBtnSize}>
         <Button
           onPress={() => setSize('Regular')}

@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
+import React, {useState, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {View, Text, TextInput, ImageBackground} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {Button} from '@rneui/base';
@@ -10,6 +10,7 @@ import bgImage from '../../assets/img/bglogin.png';
 
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
+  const tokenRedux = useSelector(state => state.auth.dataLogin?.token);
   const [showPass, setShowPass] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isError, setIseError] = useState(false);

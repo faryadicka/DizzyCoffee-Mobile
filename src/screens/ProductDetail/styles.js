@@ -64,7 +64,7 @@ export default StyleSheet.create({
   btnSize: {
     marginTop: 5,
     marginBottom: 5,
-    borderRadius: 100,
+    borderRadius: 5,
     width: 35,
     height: 35,
   },
@@ -74,6 +74,12 @@ export default StyleSheet.create({
     height: 35,
     marginTop: 5,
     marginBottom: 5,
-    borderRadius: 100,
+    borderRadius: 5,
+  },
+  Choose: {
+    marginLeft: 40,
+    marginBottom: 10,
+    fontSize: 20,
+    color: 'black',
   },
 });

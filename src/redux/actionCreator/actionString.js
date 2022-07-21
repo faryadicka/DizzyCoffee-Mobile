@@ -11,3 +11,4 @@ export const USERDATA = 'USER_DATA';
 export const ADDTOCART = 'ADD_CART';
 export const CLEARCART = 'CLEAR_CART';
 export const SETCHECKOUT = 'SET_CHECKOUT';
+export const LOGOUT = 'AUTH_LOGOUT';

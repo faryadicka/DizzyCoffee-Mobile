@@ -5,17 +5,18 @@ export default StyleSheet.create({
     flex: 1,
   },
   welcomeHeader: {
-    fontSize: 65,
+    fontSize: 55,
     color: 'white',
     textAlign: 'center',
     marginTop: 100,
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins-Medium',
+    fontWeight: '600',
   },
   BgImage: {
     flex: 1,
   },
   welcomeBtn: {
-    marginTop: 250,
+    marginTop: 200,
   },
   bgShadow: {
     padding: 25,
