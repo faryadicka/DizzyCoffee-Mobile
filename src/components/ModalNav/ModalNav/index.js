@@ -24,6 +24,9 @@ const ModalNav = ({
                 !status
                   ? () => {
                       setShow(false);
+                      if (route === 'Home') {
+                        navigation.replace(route);
+                      }
                       navigation.navigate(route);
                     }
                   : hide

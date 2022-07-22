@@ -29,7 +29,6 @@ const Payment = ({navigation}) => {
   useEffect(() => {
     getProfile(tokenRedux);
   }, [tokenRedux]);
-  console.log(checked);
   return (
     <View style={styles.paymnetContainer}>
       <Text style={styles.titlePage}>Delivery</Text>

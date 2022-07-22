@@ -16,7 +16,7 @@ export const getProductsAxios = (
 };
 
 export const getFavoriteAxios = (favorite = 'favorite') => {
-  const URL = `${URL_DEPLOY}/api/products/${favorite}?page=1&limit=4`;
+  const URL = `${URL_DEPLOY}/api/products/${favorite}?page=1&`;
   return axios.get(URL);
 };
 

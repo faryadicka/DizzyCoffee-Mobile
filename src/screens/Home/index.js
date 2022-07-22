@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, TextInput, Image, ScrollView} from 'react-native';
 import styles from './styles';
-import Bsearch from '../../assets/img/bsearch.png';
 import {getProductsAxios, getFavoriteAxios} from '../../modules/products';
 import {getUserDataAction} from '../../redux/actionCreator/users';
 import {useSelector, useDispatch} from 'react-redux';
@@ -26,7 +25,6 @@ const Home = ({route, navigation}) => {
   const getFavoriteHome = favorites => {
     getFavoriteAxios(favorites)
       .then(res => {
-        // console.log(res);
         setFavorite(res.data?.data);
       })
       .catch(err => {
@@ -36,7 +34,6 @@ const Home = ({route, navigation}) => {
   const getProductsHome = (category, search, sort, order, page, limit) => {
     getProductsAxios(category, search, sort, order, page, limit)
       .then(res => {
-        console.log(res.data);
         setProducts(res.data?.data);
       })
       .catch(err => {
@@ -48,19 +45,10 @@ const Home = ({route, navigation}) => {
     getProductsHome(params.category);
     getFavoriteHome(params.favorite);
     dispatch(getUserDataAction(tokenRedux));
-  }, [
-    params.category,
-    params.search,
-    params.sort,
-    params.order,
-    params.favorite,
-    dispatch,
-    tokenRedux,
-  ]);
+  }, [params.category, params.favorite, dispatch, tokenRedux]);
   const handleSearch = () => {
     getProductsAxios(params.category, paramsCostum.search)
       .then(res => {
-        console.log(res.data);
         setProducts(res.data?.data);
       })
       .catch(err => {
@@ -68,6 +56,7 @@ const Home = ({route, navigation}) => {
         setErrMsg(err.response?.data.message);
       });
   };
+  console.log(route);
   return (
     <View style={styles.homeContainer}>
       <View style={styles.textContainer}>
@@ -153,7 +142,7 @@ const Home = ({route, navigation}) => {
           </View>
         ) : (
           <>
-            {route.params?.favorite === 'favorite'
+            {route.params?.favorite
               ? favorite.map(item => (
                   <CardProducts
                     key={item.id}
