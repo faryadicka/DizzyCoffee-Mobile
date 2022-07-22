@@ -2,15 +2,16 @@ import React, {useState} from 'react';
 import {View, Text, Image} from 'react-native';
 import {Button} from '@rneui/base';
 import {RadioButton} from 'react-native-paper';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import styles from './styles';
 import {ScrollView} from 'react-native-gesture-handler';
 import {formatToCurrency} from '../../helpers/formatToCurrency';
 import Awesome from 'react-native-vector-icons/FontAwesome';
 import CreditCard from '../../assets/img/credit.png';
 import {paymentAxios} from '../../modules/payment';
-import {clearCartAction} from '../../redux/actionCreator/cart';
+// import {clearCartAction} from '../../redux/actionCreator/cart';
 import ModalNav from '../../components/ModalNav/ModalNav/index';
+import {sendLocalNotification} from '../../helpers/notifications';
 
 const Confirm = ({navigation}) => {
   const cart = useSelector(state => state.cart);
@@ -22,7 +23,7 @@ const Confirm = ({navigation}) => {
     err: '',
     success: '',
   });
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const handlePayment = () => {
     const body = {
       paymentMethods,
@@ -44,7 +45,10 @@ const Confirm = ({navigation}) => {
         setIseError(false);
         setMessage({...message, success: 'Payment Success!'});
         setShowModal(true);
-        // dispatch(clearCartAction({}));
+        sendLocalNotification(
+          'Payment Status',
+          'Payment successfully, please check your history for detail!',
+        );
       })
       .catch(err => {
         console.log(err);

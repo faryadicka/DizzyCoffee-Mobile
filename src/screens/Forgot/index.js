@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, ImageBackground, ScrollView} from 'react-native';
+import {View, Text, TextInput, ImageBackground} from 'react-native';
 import {forgotAxios, resetAxios} from '../../modules/auth';
 import {Button} from '@rneui/base';
 import styles from './styles';

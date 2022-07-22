@@ -11,12 +11,12 @@ export default StyleSheet.create({
     fontWeight: '700',
   },
   textContainer: {
-    alignItems: 'center',
+    paddingLeft: 40,
     paddingTop: 20,
   },
   inputField: {
     backgroundColor: '#EFEEEE',
-    width: 290,
+    width: '75%',
     marginTop: 20,
     borderRadius: 10,
     paddingLeft: 15,
@@ -59,8 +59,7 @@ export default StyleSheet.create({
     color: '#6A4029',
   },
   inputSearch: {
-    width: 300,
-    padding: 10,
+    width: '100%',
   },
   Loading: {
     justifyContent: 'center',
@@ -69,5 +68,11 @@ export default StyleSheet.create({
     position: 'relative',
     left: 70,
     bottom: 40,
+  },
+  btnSearch: {
+    width: '55%',
+    marginLeft: 10,
+    borderRadius: 10,
+    backgroundColor: '#6A4029',
   },
 });

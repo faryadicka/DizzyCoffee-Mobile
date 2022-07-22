@@ -2,7 +2,6 @@ import React from 'react';
 import {Modal, View, Text} from 'react-native';
 import {Button} from '@rneui/themed';
 import styles from './styles';
-import Evil from 'react-native-vector-icons/EvilIcons';
 
 const ModalNav = ({
   show = false,
@@ -18,18 +17,6 @@ const ModalNav = ({
       <Modal animationType="slide" transparent={true} visible={show}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <View style={styles.closeButton}>
-              {!status ? (
-                <Evil
-                  name="close"
-                  size={20}
-                  color="black"
-                  onPress={() => {
-                    setShow(false);
-                  }}
-                />
-              ) : null}
-            </View>
             <Text style={styles.modalText}>{title}</Text>
             <Button
               buttonStyle={[styles.button, styles.buttonClose]}

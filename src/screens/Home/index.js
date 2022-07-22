@@ -2,11 +2,12 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, TextInput, Image, ScrollView} from 'react-native';
 import styles from './styles';
 import Bsearch from '../../assets/img/bsearch.png';
-import Loader from '../../assets/gif/loader-small.gif';
 import {getProductsAxios, getFavoriteAxios} from '../../modules/products';
 import {getUserDataAction} from '../../redux/actionCreator/users';
 import {useSelector, useDispatch} from 'react-redux';
 import CardProducts from '../../components/CardProducts';
+import {Button} from '@rneui/base';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const Home = ({route, navigation}) => {
   const [products, setProducts] = useState([]);
@@ -25,6 +26,7 @@ const Home = ({route, navigation}) => {
   const getFavoriteHome = favorites => {
     getFavoriteAxios(favorites)
       .then(res => {
+        // console.log(res);
         setFavorite(res.data?.data);
       })
       .catch(err => {
@@ -34,6 +36,7 @@ const Home = ({route, navigation}) => {
   const getProductsHome = (category, search, sort, order, page, limit) => {
     getProductsAxios(category, search, sort, order, page, limit)
       .then(res => {
+        console.log(res.data);
         setProducts(res.data?.data);
       })
       .catch(err => {
@@ -42,14 +45,7 @@ const Home = ({route, navigation}) => {
       });
   };
   useEffect(() => {
-    getProductsHome(
-      params.category,
-      params.search,
-      params.sort,
-      params.order,
-      1,
-      4,
-    );
+    getProductsHome(params.category);
     getFavoriteHome(params.favorite);
     dispatch(getUserDataAction(tokenRedux));
   }, [
@@ -61,14 +57,25 @@ const Home = ({route, navigation}) => {
     dispatch,
     tokenRedux,
   ]);
+  const handleSearch = () => {
+    getProductsAxios(params.category, paramsCostum.search)
+      .then(res => {
+        console.log(res.data);
+        setProducts(res.data?.data);
+      })
+      .catch(err => {
+        console.log(err);
+        setErrMsg(err.response?.data.message);
+      });
+  };
   return (
     <View style={styles.homeContainer}>
       <View style={styles.textContainer}>
         <Text style={styles.textHome}>A good coffee is {'\n'}a good day</Text>
         {true ? (
-          <View style={styles.inputField}>
-            <Image source={Bsearch} />
+          <View keyboardShouldPersistTaps style={styles.inputField}>
             <TextInput
+              keyboardAppearance="dark"
               style={styles.inputSearch}
               placeholderTextColor="black"
               placeholder="Search"
@@ -76,6 +83,9 @@ const Home = ({route, navigation}) => {
                 setParamsCostum({...paramsCostum, search})
               }
             />
+            <Button buttonStyle={styles.btnSearch} onPress={handleSearch}>
+              <FontAwesome name="search" size={25} color="white" />
+            </Button>
           </View>
         ) : null}
       </View>
