@@ -15,7 +15,6 @@ import {Button} from '@rneui/base';
 import {getProfileAxios, updateProfileAxios} from '../../modules/user';
 import ModalNav from '../../components/ModalNav/ModalNav/index';
 import DatePicker from 'react-native-date-picker';
-import Avatar from '../../assets/img/avatar.png';
 import Ion from 'react-native-vector-icons/EvilIcons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import styles from './styles';
@@ -112,10 +111,8 @@ const EditProfile = ({navigation}) => {
   };
   const handlerUpdateProfile = () => {
     const bodyForm = uploadImage();
-    console.log(body.image);
     updateProfileAxios(bodyForm, tokenRedux)
       .then(res => {
-        console.log(res);
         setIsError(false);
         setMessage({...message, success: res.data?.message});
         setModal({...modal, modalStatus: true});

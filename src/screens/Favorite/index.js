@@ -130,7 +130,6 @@ function SeeMore({route, navigation}) {
     setModalShow(false);
     setCurrentPage(1);
   };
-  console.log(meta);
   return (
     <>
       <View style={styles.productsContainer}>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Text, View, Image, Pressable} from 'react-native';
-import {Button} from '@rneui/base';
+import {Button} from '@rneui/themed';
 import styles from './styles';
 import {formatToCurrency} from '../../helpers/formatToCurrency';
 import {addCartAction} from '../../redux/actionCreator/cart';
@@ -55,25 +55,34 @@ const Cart = ({navigation}) => {
             </View>
           </>
         ) : (
-          <Text>Cart empty</Text>
+          <View style={styles.emptyContainer}>
+            <Image
+              source={require('../../assets/img/empty.png')}
+              style={styles.imageEmpty}
+            />
+          </View>
         )}
       </View>
       <Button
-        onPress={() => {
-          dispatch(
-            addCartAction(
-              cart.name,
-              cart.price,
-              cart.size,
-              cart.image,
-              id,
-              formatToCurrency(cart.price * qty),
-              qty,
-            ),
-          );
-          navigation.navigate('Payment');
-        }}
-        title="Confirm and Checkout"
+        onPress={
+          cart.size
+            ? () => {
+                dispatch(
+                  addCartAction(
+                    cart.name,
+                    cart.price,
+                    cart.size,
+                    cart.image,
+                    id,
+                    formatToCurrency(cart.price * qty),
+                    qty,
+                  ),
+                );
+                navigation.navigate('Payment');
+              }
+            : () => navigation.navigate('Main')
+        }
+        title={cart.size ? 'Confirm and Checkout' : 'Home'}
         color="#6A4029"
         buttonStyle={styles.btnConfirm}
       />

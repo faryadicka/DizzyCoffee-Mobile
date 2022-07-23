@@ -16,6 +16,7 @@ export default StyleSheet.create({
     borderRadius: 20,
     display: 'flex',
     flexDirection: 'row',
+    position: 'relative',
   },
   imageCart: {
     width: 60,
@@ -62,5 +63,15 @@ export default StyleSheet.create({
   btnConfirm: {
     borderRadius: 15,
     padding: 18,
+  },
+  imageEmpty: {
+    width: 220,
+    height: 150,
+    position: 'relative',
+    left: 20,
+  },
+  btnCart: {
+    backgroundColor: '#6A4029',
+    borderRadius: 15,
   },
 });

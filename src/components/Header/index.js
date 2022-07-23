@@ -36,7 +36,7 @@ const HeaderRight = ({navigation}) => {
         onPress={() => navigation.navigate('Profile')}
         style={styles.imgWrap}>
         <Image
-          source={profile.image ? {uri: profile.image_profile} : Avatar}
+          source={profile.image_profile ? {uri: profile.image_profile} : Avatar}
           style={styles.imgHeader}
         />
       </Pressable>

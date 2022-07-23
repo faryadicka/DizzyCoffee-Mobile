@@ -20,6 +20,7 @@ import Profile from './screens/Profile/index';
 import EditProfile from './screens/EditProfile/index';
 import HeaderRight from './components/Header/index';
 import Confirm from './screens/Confirm';
+import History from './screens/History';
 
 const DrawerNav = ({navigation}) => {
   const id = useSelector(state => state.cart.id);
@@ -212,6 +213,30 @@ const DrawerNav = ({navigation}) => {
               <Ion
                 onPress={() => {
                   navigation.push('Home');
+                }}
+                name="chevron-back-outline"
+                size={20}
+                color="black"
+              />
+            </View>
+          ),
+        }}
+      />
+      <Screen
+        name="History"
+        component={History}
+        options={{
+          headerStyle: {
+            backgroundColor: '#ECECEC',
+          },
+          headerTitleAlign: 'center',
+          headerTitleStyle: {fontWeight: '800'},
+          headerTitle: 'Order History',
+          headerLeft: () => (
+            <View style={{paddingLeft: 20}}>
+              <Ion
+                onPress={() => {
+                  navigation.push('Profile');
                 }}
                 name="chevron-back-outline"
                 size={20}
