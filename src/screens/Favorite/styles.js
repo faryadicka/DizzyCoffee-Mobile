@@ -14,16 +14,22 @@ export default StyleSheet.create({
     textAlign: 'center',
   },
   wrapperProducts: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    // flexDirection: 'row',
+    // flexWrap: 'wrap',
     flex: 1,
-    width: 360,
+    width: '100%',
     borderTopRightRadius: 40,
     borderTopLeftRadius: 40,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     marginTop: 10,
-    paddingTop: 20,
-    paddingBottom: 50,
+    // paddingBottom: 50,
+    alignContent: 'center',
+    // backgroundColor: 'red',
+    position: 'relative',
+  },
+  FlatList: {
+    position: 'relative',
+    left: 40,
   },
   filterProducts: {
     flexDirection: 'row',
@@ -71,6 +77,8 @@ export default StyleSheet.create({
     backgroundColor: '#b7b7b7',
     padding: 7,
     borderRadius: 15,
+    paddingLeft: 15,
+    color: 'white',
   },
   labelRadio: {
     flexDirection: 'row',
@@ -105,5 +113,9 @@ export default StyleSheet.create({
     marginTop: 10,
     backgroundColor: '#FFBA33',
     borderRadius: 10,
+  },
+  loaderComponent: {
+    position: 'relative',
+    right: 35,
   },
 });

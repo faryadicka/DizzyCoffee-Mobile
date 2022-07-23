@@ -25,7 +25,7 @@ const ModalNav = ({
                   ? () => {
                       setShow(false);
                       if (route === 'Home') {
-                        navigation.replace(route);
+                        navigation.replace(route, {category: 1});
                       }
                       navigation.navigate(route);
                     }

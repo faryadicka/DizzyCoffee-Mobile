@@ -3,14 +3,20 @@ import android.os.Bundle;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
+import org.devio.rn.splashscreen.SplashScreen; // add this
+import android.os.Bundle; // add this
 
 public class MainActivity extends ReactActivity {
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-  super.onCreate(null);
+  // @Override
+  // protected void onCreate(Bundle savedInstanceState) {
+  // super.onCreate(null);
+  // }
+  @Override                                             // add this
+  protected void onCreate(Bundle savedInstanceState) {  // add this
+    SplashScreen.show(this);                            // add this
+    super.onCreate(savedInstanceState);                 // add this
   }
-
   /**
    * Returns the name of the main component registered from JavaScript. This is used to schedule
    * rendering of the component.

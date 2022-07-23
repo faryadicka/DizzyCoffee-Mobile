@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import SplashScreen from 'react-native-splash-screen';
 import Ion from 'react-native-vector-icons/Ionicons';
 import Welcome from './screens/Welcome/index';
 import Login from './screens/Login/index';
@@ -56,7 +57,7 @@ const DrawerNav = ({navigation}) => {
             <View style={{paddingLeft: 20}}>
               <Ion
                 onPress={() => {
-                  navigation.navigate('Main');
+                  navigation.replace('Home');
                 }}
                 name="chevron-back-outline"
                 size={20}
@@ -210,7 +211,7 @@ const DrawerNav = ({navigation}) => {
             <View style={{paddingLeft: 20}}>
               <Ion
                 onPress={() => {
-                  navigation.navigate('Main');
+                  navigation.push('Home');
                 }}
                 name="chevron-back-outline"
                 size={20}
@@ -226,6 +227,9 @@ const DrawerNav = ({navigation}) => {
 
 const App = () => {
   const {Navigator, Screen} = createStackNavigator();
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
   return (
     <Navigator screenOptions={{headerShown: false}}>
       <Screen name="Welcome" component={Welcome} />

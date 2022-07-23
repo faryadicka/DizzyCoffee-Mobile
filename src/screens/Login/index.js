@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {View, Text, TextInput, ImageBackground} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import {Button} from '@rneui/base';
+import {Button} from '@rneui/themed';
 import {loginAction} from '../../redux/actionCreator/auth';
 import styles from './styles';
 import ModalNav from '../../components/ModalNav/ModalNav/index';
@@ -10,10 +10,11 @@ import bgImage from '../../assets/img/bglogin.png';
 
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
-  const tokenRedux = useSelector(state => state.auth.dataLogin?.token);
+  // const tokenRedux = useSelector(state => state.auth.dataLogin?.token);
   const [showPass, setShowPass] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isError, setIseError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({
     err: '',
     success: '',
@@ -28,18 +29,21 @@ const Login = ({navigation}) => {
       email: input.email,
       password: input.password,
     };
+    setLoading(true);
     dispatch(loginAction(body))
       .then(res => {
         console.log(res);
         setMessage({...message, success: 'Login Success!'});
         setShowModal(true);
         setIseError(false);
+        setLoading(false);
       })
       .catch(err => {
         console.log(err);
         setShowModal(true);
         setMessage({...message, err: err.response?.data.message});
         setIseError(true);
+        setLoading(false);
       });
   };
   return (
@@ -89,6 +93,7 @@ const Login = ({navigation}) => {
                   title="Login"
                   color="#FFBA33"
                   onPress={handleLogin}
+                  loading={loading}
                 />
               </View>
             </View>

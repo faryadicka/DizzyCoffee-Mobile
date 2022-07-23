@@ -15,7 +15,7 @@ export default StyleSheet.create({
     paddingTop: 20,
   },
   inputField: {
-    backgroundColor: '#EFEEEE',
+    backgroundColor: '#b7b7b7',
     width: '75%',
     marginTop: 20,
     borderRadius: 10,

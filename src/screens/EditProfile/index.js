@@ -64,7 +64,6 @@ const EditProfile = ({navigation}) => {
         setIsError(false);
         setMessage({...message, success: res.data?.message});
         setShowModal(true);
-        navigation.push('Home');
       })
       .catch(err => {
         setIsError(true);

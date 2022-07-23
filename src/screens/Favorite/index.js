@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, ScrollView, Modal, Text, TextInput} from 'react-native';
+import {
+  View,
+  Modal,
+  Text,
+  TextInput,
+  FlatList,
+  ActivityIndicator,
+} from 'react-native';
 import styles from './styles';
 import {getProductsAxios, getFavoriteAxios} from '../../modules/products';
 import CardProductsMore from '../../components/CardProductsMore';
@@ -9,9 +16,11 @@ import {RadioButton} from 'react-native-paper';
 
 function SeeMore({route, navigation}) {
   const [products, setProducts] = useState([]);
+  const [meta, setMeta] = useState([]);
   const [favorite, setFavorite] = useState([]);
   const [errMsg, setErrMsg] = useState([]);
-  const [scroll, setScroll] = useState(true);
+  const [currentPage, setCurrentPage] = useState(route.params.page);
+  const [loading, setLoading] = useState(true);
   const [modalShow, setModalShow] = useState(false);
   const [checked, setChecked] = useState({
     order: 'ASC',
@@ -27,28 +36,74 @@ function SeeMore({route, navigation}) {
     getFavoriteAxios(favorites)
       .then(res => {
         setFavorite(res.data?.data);
+        setLoading(false);
       })
       .catch(err => {
         console.log(err);
       });
   };
-  const getProductsHome = (category, search, sort, order) => {
-    getProductsAxios(category, search, sort, order)
+
+  const getProductsHome = (category, search, sort, order, page) => {
+    getProductsAxios(category, search, sort, order, page)
       .then(res => {
         setProducts(res.data?.data);
+        // setProducts([...products, ...res.data?.data]);
+        setMeta(res.data);
+        setLoading(false);
       })
       .catch(err => {
         console.log(err);
         setErrMsg(err.response?.data.message);
       });
   };
+  const renderItem = ({item}) => {
+    return (
+      <CardProductsMore
+        key={item.id}
+        image={item.image}
+        title={item.name}
+        price={item.price}
+        id={item.id}
+        navigation={navigation}
+      />
+    );
+  };
+  const renderLoader = () => {
+    return (
+      <>
+        {loading ? (
+          <View style={styles.loaderComponent}>
+            <ActivityIndicator size="large" color="#6A4029" />
+          </View>
+        ) : null}
+      </>
+    );
+  };
+  const loadMore = () => {
+    if (meta.nextLink) {
+      return setCurrentPage(currentPage + 1);
+    }
+  };
   useEffect(() => {
-    getProductsHome(params.category);
+    getProductsHome(
+      params.category,
+      '',
+      checked.sort,
+      checked.order,
+      currentPage,
+    );
     getFavoriteHome(params.favorite);
-  }, [params.category, params.favorite]);
+  }, [
+    checked.order,
+    checked.sort,
+    currentPage,
+    params.category,
+    params.favorite,
+  ]);
   const handleSearch = () => {
-    getProductsAxios(params.category, params.search)
+    getProductsAxios(params.category, paramsCostum.search)
       .then(res => {
+        console.log(res.data.data);
         setProducts(res.data?.data);
       })
       .catch(err => {
@@ -62,6 +117,7 @@ function SeeMore({route, navigation}) {
       paramsCostum.search,
       checked.sort,
       checked.order,
+      currentPage,
     )
       .then(res => {
         console.log(res.data);
@@ -72,11 +128,12 @@ function SeeMore({route, navigation}) {
         setErrMsg(err.response?.data.message);
       });
     setModalShow(false);
+    setCurrentPage(1);
   };
-  console.log(paramsCostum.category);
+  console.log(meta);
   return (
     <>
-      <ScrollView scrollEnabled={scroll} style={styles.productsContainer}>
+      <View style={styles.productsContainer}>
         <View style={styles.filterProducts}>
           <TextInput
             keyboardAppearance="dark"
@@ -95,29 +152,18 @@ function SeeMore({route, navigation}) {
           </Button>
         </View>
         <View style={styles.wrapperProducts}>
-          {route.params?.favorite
-            ? favorite.map(item => (
-                <CardProductsMore
-                  key={item.id}
-                  image={item.image}
-                  title={item.name}
-                  price={item.price}
-                  id={item.id}
-                  navigation={navigation}
-                />
-              ))
-            : products.map(item => (
-                <CardProductsMore
-                  key={item.id}
-                  image={item.image}
-                  title={item.name}
-                  price={item.price}
-                  id={item.id}
-                  navigation={navigation}
-                />
-              ))}
+          <FlatList
+            style={styles.FlatList}
+            data={route.params?.favorite ? favorite : products}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+            horizontal={false}
+            numColumns={2}
+            ListFooterComponent={renderLoader}
+            onEndReached={loadMore}
+          />
         </View>
-      </ScrollView>
+      </View>
       <Modal visible={modalShow} transparent={true} animationType="slide">
         <View style={styles.modalContainer}>
           <View style={styles.modalBody}>

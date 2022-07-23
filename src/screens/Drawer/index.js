@@ -42,10 +42,14 @@ const MyDrawer = ({navigation}) => {
           <Material name="cart-arrow-down" size={25} color="#6A4029" />
           <Text style={styles.textNav}>Orders</Text>
         </View>
-        <View style={styles.listNav}>
+        <Pressable
+          onPress={() => {
+            navigation.navigate('Favorite', {page: 1});
+          }}
+          style={styles.listNav}>
           <Ion name="md-fast-food-outline" size={25} color="#6A4029" />
           <Text style={styles.textNav}>All menu</Text>
-        </View>
+        </Pressable>
         <View style={styles.listNav}>
           <Material name="note-text-outline" size={25} color="#6A4029" />
           <Text style={styles.textNav}>Orders</Text>
