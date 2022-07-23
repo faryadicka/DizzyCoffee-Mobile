@@ -11,6 +11,6 @@ export const getProfileAxios = token => {
 export const updateProfileAxios = (body, token) => {
   const URL = `${URL_DEPLOY}/api/users/profile`;
   return axios.patch(URL, body, {
-    headers: {'x-access-token': token, 'Access-Control-Allow-Origin': '*'},
+    headers: {'x-access-token': token, 'Content-Type': 'multipart/form-data'},
   });
 };
