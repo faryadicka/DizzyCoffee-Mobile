@@ -3,14 +3,20 @@ import {useSelector} from 'react-redux';
 import {View, Text, FlatList, Image, Pressable, Modal} from 'react-native';
 import styles from './styles';
 import Material from 'react-native-vector-icons/MaterialCommunityIcons';
-import {getAllhistories} from '../../modules/history';
+import {getAllhistories, softDeleteAxios} from '../../modules/history';
 import {Button} from '@rneui/themed';
 
 function History() {
+  const tokenRedux = useSelector(state => state.auth.dataLogin?.token);
   const [history, setHistory] = useState([]);
   const [newHistory, setNewHistory] = useState([]);
   const [show, setShow] = useState(false);
-  const tokenRedux = useSelector(state => state.auth.dataLogin?.token);
+  const [isError, setIsError] = useState(false);
+  const [id, setId] = useState(0);
+  const [message, setMessage] = useState({
+    err: '',
+    success: '',
+  });
   const getHistories = (token, limit) => {
     getAllhistories(token, limit)
       .then(res => {
@@ -21,6 +27,9 @@ function History() {
         console.log(err.response?.data.message);
       });
   };
+  useEffect(() => {
+    getHistories(tokenRedux, 12);
+  }, [tokenRedux]);
   const renderItem = ({item}) => {
     return (
       <>
@@ -37,6 +46,7 @@ function History() {
             onPress={() => {
               let select = [...history];
               let newHistories = select.filter(prd => prd.id !== item.id);
+              setId(item.id);
               setNewHistory(newHistories);
               setShow(true);
             }}>
@@ -46,10 +56,24 @@ function History() {
       </>
     );
   };
-  useEffect(() => {
-    getHistories(tokenRedux, 12);
-  }, [tokenRedux]);
-  console.log(history);
+  const handleSoftDelete = () => {
+    const body = {
+      idTransaction: id,
+    };
+    softDeleteAxios(tokenRedux, body)
+      .then(res => {
+        console.log(res);
+        setMessage({...message, success: res.data?.message});
+        setHistory(newHistory);
+        setShow(false);
+        setIsError(false);
+      })
+      .catch(err => {
+        console.log(err);
+        setMessage({...message, success: err.response?.data.message});
+        setIsError(true);
+      });
+  };
   return (
     <>
       <View style={styles.containerHistory}>
@@ -80,12 +104,7 @@ function History() {
                 buttonStyle={styles.btnDelete}>
                 NO
               </Button>
-              <Button
-                onPress={() => {
-                  setHistory(newHistory);
-                  setShow(false);
-                }}
-                buttonStyle={styles.btnDelete}>
+              <Button onPress={handleSoftDelete} buttonStyle={styles.btnDelete}>
                 YES
               </Button>
             </View>
