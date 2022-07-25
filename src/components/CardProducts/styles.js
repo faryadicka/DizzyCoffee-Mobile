@@ -31,4 +31,17 @@ export default StyleSheet.create({
     bottom: 60,
     left: 21,
   },
+  editButton: {
+    width: 30,
+    height: 30,
+    borderRadius: 30,
+    backgroundColor: '#6A4029',
+    position: 'absolute',
+    zIndex: 2,
+    left: 135,
+    top: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 2,
+  },
 });

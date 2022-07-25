@@ -27,18 +27,20 @@ export default StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    paddingLeft: 10,
+    paddingLeft: 40,
     paddingRight: 10,
   },
   textColor: {
     color: '#9A9A9D',
     marginTop: 20,
+    marginLeft: 20,
   },
   textActive: {
     color: '#6A4029',
     marginTop: 20,
     borderBottomColor: '#6A4029',
     borderBottomWidth: 2,
+    marginLeft: 20,
   },
   cardsWrap: {
     paddingLeft: 10,

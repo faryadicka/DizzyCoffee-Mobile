@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, TextInput, Image, ScrollView} from 'react-native';
 import styles from './styles';
 import {getProductsAxios, getFavoriteAxios} from '../../modules/products';
+import {getPromoAxios} from '../../modules/promos';
 import {getUserDataAction} from '../../redux/actionCreator/users';
 import {useSelector, useDispatch} from 'react-redux';
 import CardProducts from '../../components/CardProducts';
@@ -10,6 +11,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const Home = ({route, navigation}) => {
   const [products, setProducts] = useState([]);
+  const [promos, setPromos] = useState([]);
   const [favorite, setFavorite] = useState([]);
   const [errMsg, setErrMsg] = useState([]);
   const tokenRedux = useSelector(state => state.auth.dataLogin?.token);
@@ -35,6 +37,7 @@ const Home = ({route, navigation}) => {
   const getProductsHome = (category, search, sort, order, page, limit) => {
     getProductsAxios(category, search, sort, order, page, limit)
       .then(res => {
+        console.log(res);
         setProducts(res.data?.data);
       })
       .catch(err => {
@@ -42,7 +45,18 @@ const Home = ({route, navigation}) => {
         setErrMsg(err.response?.data.message);
       });
   };
+  const getPromosHome = () => {
+    getPromoAxios()
+      .then(res => {
+        console.log(res);
+        setPromos(res.data?.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   useEffect(() => {
+    getPromosHome();
     getProductsHome(params.category);
     getFavoriteHome(params.favorite);
     dispatch(getUserDataAction(tokenRedux));
@@ -57,7 +71,6 @@ const Home = ({route, navigation}) => {
         setErrMsg(err.response?.data.message);
       });
   };
-  console.log(route);
   return (
     <View style={styles.homeContainer}>
       <View style={styles.textContainer}>
@@ -114,6 +127,13 @@ const Home = ({route, navigation}) => {
           }>
           Foods
         </Text>
+        <Text
+          onPress={() => {
+            navigation.navigate('Main', {promo: 'promo'});
+          }}
+          style={route.params?.promo ? styles.textActive : styles.textColor}>
+          Promo
+        </Text>
       </View>
       <View style={styles.viewAll}>
         <Text style={styles.textViewAll}>All</Text>
@@ -155,6 +175,18 @@ const Home = ({route, navigation}) => {
                     price={item.price}
                     id={item.id}
                     navigation={navigation}
+                  />
+                ))
+              : route.params?.promo
+              ? promos.map(item => (
+                  <CardProducts
+                    key={item.id}
+                    image={item.image}
+                    title={item.products_name}
+                    price={item.normal_price}
+                    id={item.id}
+                    navigation={navigation}
+                    params={route.params?.promo}
                   />
                 ))
               : products.map(item => (

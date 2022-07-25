@@ -34,3 +34,10 @@ export const createProductAxios = (body, token) => {
     },
   });
 };
+
+export const updateProductAxios = (id, body, token) => {
+  const URL = `${URL_DEPLOY}/api/products/${id}`;
+  return axios.patch(URL, body, {
+    headers: {'x-access-token': token, 'Content-Type': 'multipart/form-data'},
+  });
+};

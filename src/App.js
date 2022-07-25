@@ -25,6 +25,7 @@ import Confirm from './screens/Confirm';
 import History from './screens/History';
 import CreateProduct from './screens/CreateProduct';
 import CreatePromo from './screens/CreatePromo';
+import EditProduct from './screens/EditProduct';
 
 const DrawerNav = ({navigation}) => {
   const id = useSelector(state => state.cart.id);
@@ -308,6 +309,30 @@ const DrawerNav = ({navigation}) => {
           headerTitleAlign: 'center',
           headerTitleStyle: {fontWeight: '800'},
           headerTitle: 'New Promo',
+          headerLeft: () => (
+            <View style={{paddingLeft: 20}}>
+              <Ion
+                onPress={() => {
+                  navigation.push('Home');
+                }}
+                name="chevron-back-outline"
+                size={20}
+                color="black"
+              />
+            </View>
+          ),
+        }}
+      />
+      <Screen
+        name="EditProduct"
+        component={EditProduct}
+        options={{
+          headerStyle: {
+            backgroundColor: '#ECECEC',
+          },
+          headerTitleAlign: 'center',
+          headerTitleStyle: {fontWeight: '800'},
+          headerTitle: 'Edit Product',
           headerLeft: () => (
             <View style={{paddingLeft: 20}}>
               <Ion
