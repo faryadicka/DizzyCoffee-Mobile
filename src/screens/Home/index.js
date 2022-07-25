@@ -5,7 +5,7 @@ import {getProductsAxios, getFavoriteAxios} from '../../modules/products';
 import {getUserDataAction} from '../../redux/actionCreator/users';
 import {useSelector, useDispatch} from 'react-redux';
 import CardProducts from '../../components/CardProducts';
-import {Button} from '@rneui/base';
+import {Button} from '@rneui/themed';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const Home = ({route, navigation}) => {
@@ -13,6 +13,7 @@ const Home = ({route, navigation}) => {
   const [favorite, setFavorite] = useState([]);
   const [errMsg, setErrMsg] = useState([]);
   const tokenRedux = useSelector(state => state.auth.dataLogin?.token);
+  const role = useSelector(state => state.auth.dataLogin?.role);
   const dispatch = useDispatch();
   const [paramsCostum, setParamsCostum] = useState({
     category: '',
@@ -132,7 +133,10 @@ const Home = ({route, navigation}) => {
           See more
         </Text>
       </View>
-      <ScrollView horizontal={true} style={styles.cardsWrap}>
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        horizontal={true}
+        style={styles.cardsWrap}>
         {products.length <= 0 || favorite.length <= 0 ? (
           <View style={styles.Loading}>
             <Image
@@ -166,6 +170,20 @@ const Home = ({route, navigation}) => {
           </>
         )}
       </ScrollView>
+      {role === 1 ? (
+        <View style={styles.btnAdmin}>
+          <Button
+            onPress={() => navigation.navigate('CreateProduct')}
+            buttonStyle={styles.btnAdd}>
+            Add Product
+          </Button>
+          <Button
+            onPress={() => navigation.navigate('CreatePromo')}
+            buttonStyle={styles.btnAdd}>
+            Add Promo
+          </Button>
+        </View>
+      ) : null}
     </View>
   );
 };

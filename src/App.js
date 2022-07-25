@@ -23,6 +23,8 @@ import EditPassword from './screens/EditPassword/index';
 import HeaderRight from './components/Header/index';
 import Confirm from './screens/Confirm';
 import History from './screens/History';
+import CreateProduct from './screens/CreateProduct';
+import CreatePromo from './screens/CreatePromo';
 
 const DrawerNav = ({navigation}) => {
   const id = useSelector(state => state.cart.id);
@@ -263,6 +265,54 @@ const DrawerNav = ({navigation}) => {
               <Ion
                 onPress={() => {
                   navigation.navigate('Profile');
+                }}
+                name="chevron-back-outline"
+                size={20}
+                color="black"
+              />
+            </View>
+          ),
+        }}
+      />
+      <Screen
+        name="CreateProduct"
+        component={CreateProduct}
+        options={{
+          headerStyle: {
+            backgroundColor: '#ECECEC',
+          },
+          headerTitleAlign: 'center',
+          headerTitleStyle: {fontWeight: '800'},
+          headerTitle: 'New Product',
+          headerLeft: () => (
+            <View style={{paddingLeft: 20}}>
+              <Ion
+                onPress={() => {
+                  navigation.push('Home');
+                }}
+                name="chevron-back-outline"
+                size={20}
+                color="black"
+              />
+            </View>
+          ),
+        }}
+      />
+      <Screen
+        name="CreatePromo"
+        component={CreatePromo}
+        options={{
+          headerStyle: {
+            backgroundColor: '#ECECEC',
+          },
+          headerTitleAlign: 'center',
+          headerTitleStyle: {fontWeight: '800'},
+          headerTitle: 'New Promo',
+          headerLeft: () => (
+            <View style={{paddingLeft: 20}}>
+              <Ion
+                onPress={() => {
+                  navigation.push('Home');
                 }}
                 name="chevron-back-outline"
                 size={20}

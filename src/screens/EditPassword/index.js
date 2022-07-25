@@ -54,7 +54,9 @@ const EditPassword = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titleScreen}>Edit Password Screen</Text>
+      <Text style={styles.titleScreen}>
+        Edit your password to be more secure.
+      </Text>
       <Text>Your new password :</Text>
       <View style={styles.containerInput}>
         <TextInput

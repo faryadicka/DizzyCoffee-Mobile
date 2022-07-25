@@ -75,4 +75,18 @@ export default StyleSheet.create({
     borderRadius: 10,
     backgroundColor: '#6A4029',
   },
+  btnAdd: {
+    marginBottom: 20,
+    marginRight: 20,
+    marginLeft: 20,
+    backgroundColor: '#6A4029',
+    borderRadius: 10,
+    width: 150,
+  },
+  btnAdmin: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    paddingRight: 40,
+    paddingLeft: 40,
+  },
 });

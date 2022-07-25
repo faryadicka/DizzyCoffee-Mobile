@@ -24,3 +24,13 @@ export const getDetailAxios = id => {
   const URL = `${URL_DEPLOY}/api/products/detail/${id}`;
   return axios.get(URL);
 };
+
+export const createProductAxios = (body, token) => {
+  const URL = `${URL_DEPLOY}/api/products`;
+  return axios.post(URL, body, {
+    headers: {
+      'x-access-token': token,
+      'content-type': 'multipart/form-data',
+    },
+  });
+};

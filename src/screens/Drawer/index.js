@@ -83,10 +83,10 @@ const MyDrawer = ({navigation}) => {
               </Button>
               <Button
                 onPress={() => {
-                  navigation.replace('Landing');
+                  navigation.push('Landing');
                   setTimeout(() => {
                     dispatch(logoutAction(null));
-                  }, 5000);
+                  }, 10000);
                 }}
                 color="#6A4029"
                 buttonStyle={styles.btnModal}>
