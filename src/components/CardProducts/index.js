@@ -37,7 +37,7 @@ function CardProducts({id, image, title, price, navigation, params, discount}) {
         <Text style={styles.price}>
           IDR{' '}
           {params === 'promo'
-            ? `${formatToCurrency((price * discount) / 100)}`
+            ? `${formatToCurrency(price - (price * discount) / 100)}`
             : `${formatToCurrency(price)}`}
         </Text>
         {params === 'promo' ? (
