@@ -43,7 +43,7 @@ export default StyleSheet.create({
     width: 140,
     height: 140,
     borderRadius: 15,
-    bottom: 80,
+    bottom: 70,
     left: 21,
   },
   editButton: {
