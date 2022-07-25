@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import {View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import Toast from 'react-native-toast-message';
 import SplashScreen from 'react-native-splash-screen';
 import Ion from 'react-native-vector-icons/Ionicons';
 import Welcome from './screens/Welcome/index';
@@ -18,6 +19,7 @@ import Cart from './screens/Cart/index';
 import Payment from './screens/Payment/index';
 import Profile from './screens/Profile/index';
 import EditProfile from './screens/EditProfile/index';
+import EditPassword from './screens/EditPassword/index';
 import HeaderRight from './components/Header/index';
 import Confirm from './screens/Confirm';
 import History from './screens/History';
@@ -246,24 +248,54 @@ const DrawerNav = ({navigation}) => {
           ),
         }}
       />
+      <Screen
+        name="EditPassword"
+        component={EditPassword}
+        options={{
+          headerStyle: {
+            backgroundColor: '#ECECEC',
+          },
+          headerTitleAlign: 'center',
+          headerTitleStyle: {fontWeight: '800'},
+          headerTitle: 'Edit Password',
+          headerLeft: () => (
+            <View style={{paddingLeft: 20}}>
+              <Ion
+                onPress={() => {
+                  navigation.navigate('Profile');
+                }}
+                name="chevron-back-outline"
+                size={20}
+                color="black"
+              />
+            </View>
+          ),
+        }}
+      />
     </Navigator>
   );
 };
 
 const App = () => {
+  const Token = useSelector(state => state.auth.dataLogin?.token);
   const {Navigator, Screen} = createStackNavigator();
   useEffect(() => {
     SplashScreen.hide();
   }, []);
   return (
-    <Navigator screenOptions={{headerShown: false}}>
-      <Screen name="Welcome" component={Welcome} />
-      <Screen name="Landing" component={Landing} />
-      <Screen name="Login" component={Login} />
-      <Screen name="Register" component={Register} />
-      <Screen name="Forgot" component={Forgot} />
-      <Screen name="Home" component={DrawerNav} />
-    </Navigator>
+    <>
+      <Navigator
+        initialRouteName={Token ? 'Home' : 'Welcome'}
+        screenOptions={{headerShown: false}}>
+        <Screen name="Welcome" component={Welcome} />
+        <Screen name="Landing" component={Landing} />
+        <Screen name="Login" component={Login} />
+        <Screen name="Register" component={Register} />
+        <Screen name="Forgot" component={Forgot} />
+        <Screen name="Home" component={DrawerNav} />
+      </Navigator>
+      <Toast />
+    </>
   );
 };
 

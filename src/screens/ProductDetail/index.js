@@ -6,12 +6,11 @@ import {getDetailAxios} from '../../modules/products';
 import {formatToCurrency} from '../../helpers/formatToCurrency';
 import {useDispatch} from 'react-redux';
 import {addCartAction} from '../../redux/actionCreator/cart';
-import ModalNav from '../../components/ModalNav/ModalNav';
+import Toast from 'react-native-toast-message';
 
-function ProductDetail({route, navigation}) {
+function ProductDetail({route}) {
   const dispatch = useDispatch();
   const [product, setProduct] = useState({});
-  const [showModal, setShowModal] = useState(false);
   const [size, setSize] = useState('');
   const getDetail = id => {
     getDetailAxios(id)
@@ -82,22 +81,17 @@ function ProductDetail({route, navigation}) {
                 route.params.id,
               ),
             );
-            setShowModal(true);
+            Toast.show({
+              type: 'success',
+              text1: 'Success ',
+              text2: 'Please check your cart to next proccess!',
+            });
           }}
           title="Add to cart"
           color="#6A4029"
           buttonStyle={styles.btnCart}
         />
       </View>
-      <ModalNav
-        show={showModal}
-        hide={() => setShowModal(!showModal)}
-        navigation={navigation}
-        title="Product added to cart successfully"
-        status={true}
-        route="Cart"
-        setShow={setShowModal}
-      />
     </ScrollView>
   );
 }

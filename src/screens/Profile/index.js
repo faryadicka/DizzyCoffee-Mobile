@@ -166,7 +166,11 @@ const Profile = ({navigation}) => {
           </ScrollView>
         </View>
         <View style={styles.containerEdit}>
-          <Pressable style={styles.btnEditProfile}>
+          <Pressable
+            onPress={() => {
+              navigation.navigate('EditPassword');
+            }}
+            style={styles.btnEditProfile}>
             <Text style={styles.btnText}>Edit Password</Text>
             <Ion name="chevron-right" size={20} color="#6A4029" />
           </Pressable>

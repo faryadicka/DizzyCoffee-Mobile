@@ -57,7 +57,7 @@ export default StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 50,
+    marginTop: 100,
   },
   textNav: {
     color: '#6A4029',
@@ -65,5 +65,32 @@ export default StyleSheet.create({
     marginStart: 10,
     marginEnd: 10,
     fontWeight: '400',
+  },
+  modalContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 30,
+    backgroundColor: '#0000002e',
+  },
+  modalBody: {
+    width: '100%',
+    height: 150,
+    backgroundColor: 'white',
+    padding: 20,
+    justifyContent: 'space-between',
+    borderRadius: 15,
+  },
+  btnWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  btnModal: {
+    width: 100,
+  },
+  textConfirm: {
+    fontSize: 30,
+    textAlign: 'center',
+    color: '#6A4029',
   },
 });

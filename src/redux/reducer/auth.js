@@ -3,6 +3,7 @@ import {
   FULFILLED,
   PENDING,
   REJECTED,
+  LOGOUT,
 } from '../actionCreator/actionString';
 
 const initialState = {
@@ -30,6 +31,9 @@ const authReducer = (state = initialState, action) => {
         isLoading: false,
         isLoggedIn: false,
       };
+    case LOGOUT:
+      const {remove} = action.payload;
+      return {...state, dataLogin: remove};
     default:
       return state;
   }

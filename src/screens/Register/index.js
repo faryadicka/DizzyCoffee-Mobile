@@ -46,6 +46,11 @@ const Register = ({navigation}) => {
         setIseError(true);
         setShowModal(true);
       });
+    setInput({
+      email: '',
+      password: '',
+      phone: '',
+    });
   };
   return (
     <>

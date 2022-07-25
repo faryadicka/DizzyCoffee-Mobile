@@ -34,9 +34,14 @@ const Login = ({navigation}) => {
       .then(res => {
         console.log(res);
         setMessage({...message, success: 'Login Success!'});
-        setShowModal(true);
+        // setShowModal(true);
         setIseError(false);
         setLoading(false);
+        navigation.push('Home');
+        setInput({
+          email: '',
+          password: '',
+        });
       })
       .catch(err => {
         console.log(err);
