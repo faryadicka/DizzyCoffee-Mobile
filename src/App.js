@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import {View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import styles from './styles';
 import Toast from 'react-native-toast-message';
 import SplashScreen from 'react-native-splash-screen';
 import Ion from 'react-native-vector-icons/Ionicons';
@@ -26,6 +27,7 @@ import History from './screens/History';
 import CreateProduct from './screens/CreateProduct';
 import CreatePromo from './screens/CreatePromo';
 import EditProduct from './screens/EditProduct';
+import EditPromo from './screens/EditPromo';
 
 const DrawerNav = ({navigation}) => {
   const id = useSelector(state => state.cart.id);
@@ -60,7 +62,7 @@ const DrawerNav = ({navigation}) => {
           headerTitleStyle: {fontWeight: '900'},
           headerTitle: 'Favorite Products',
           headerLeft: () => (
-            <View style={{paddingLeft: 20}}>
+            <View style={styles.headerLeft}>
               <Ion
                 onPress={() => {
                   navigation.replace('Home');
@@ -80,7 +82,7 @@ const DrawerNav = ({navigation}) => {
           headerTitleStyle: {fontWeight: '900'},
           headerTitleAlign: 'center',
           headerLeft: () => (
-            <View style={{paddingLeft: 20}}>
+            <View style={styles.headerLeft}>
               <Ion
                 onPress={() => {
                   navigation.navigate('Main');
@@ -92,7 +94,7 @@ const DrawerNav = ({navigation}) => {
             </View>
           ),
           headerRight: () => (
-            <View style={{paddingRight: 20}}>
+            <View style={styles.headerRight}>
               <Ion
                 onPress={() => {
                   navigation.navigate('Cart');
@@ -118,7 +120,7 @@ const DrawerNav = ({navigation}) => {
           headerTitleStyle: {fontWeight: '800'},
           headerTitle: 'Cart',
           headerLeft: () => (
-            <View style={{paddingLeft: 20}}>
+            <View style={styles.headerLeft}>
               <Ion
                 onPress={() => {
                   navigation.navigate('ProductDetail', {id: Number(id)});
@@ -142,7 +144,7 @@ const DrawerNav = ({navigation}) => {
           headerTitleStyle: {fontWeight: '800'},
           headerTitle: 'Checkout',
           headerLeft: () => (
-            <View style={{paddingLeft: 20}}>
+            <View style={styles.headerLeft}>
               <Ion
                 onPress={() => {
                   navigation.navigate('Cart');
@@ -166,7 +168,7 @@ const DrawerNav = ({navigation}) => {
           headerTitleStyle: {fontWeight: '800'},
           headerTitle: 'Payment',
           headerLeft: () => (
-            <View style={{paddingLeft: 20}}>
+            <View style={styles.headerLeft}>
               <Ion
                 onPress={() => {
                   navigation.navigate('Payment');
@@ -190,7 +192,7 @@ const DrawerNav = ({navigation}) => {
           headerTitleStyle: {fontWeight: '800'},
           headerTitle: 'My Profile',
           headerLeft: () => (
-            <View style={{paddingLeft: 20}}>
+            <View style={styles.headerLeft}>
               <Ion
                 onPress={() => {
                   navigation.push('Home');
@@ -214,7 +216,7 @@ const DrawerNav = ({navigation}) => {
           headerTitleStyle: {fontWeight: '800'},
           headerTitle: 'Edit Profile',
           headerLeft: () => (
-            <View style={{paddingLeft: 20}}>
+            <View style={styles.headerLeft}>
               <Ion
                 onPress={() => {
                   navigation.push('Home');
@@ -238,7 +240,7 @@ const DrawerNav = ({navigation}) => {
           headerTitleStyle: {fontWeight: '800'},
           headerTitle: 'Order History',
           headerLeft: () => (
-            <View style={{paddingLeft: 20}}>
+            <View style={styles.headerLeft}>
               <Ion
                 onPress={() => {
                   navigation.push('Home');
@@ -262,7 +264,7 @@ const DrawerNav = ({navigation}) => {
           headerTitleStyle: {fontWeight: '800'},
           headerTitle: 'Edit Password',
           headerLeft: () => (
-            <View style={{paddingLeft: 20}}>
+            <View style={styles.headerLeft}>
               <Ion
                 onPress={() => {
                   navigation.navigate('Profile');
@@ -286,7 +288,7 @@ const DrawerNav = ({navigation}) => {
           headerTitleStyle: {fontWeight: '800'},
           headerTitle: 'New Product',
           headerLeft: () => (
-            <View style={{paddingLeft: 20}}>
+            <View style={styles.headerLeft}>
               <Ion
                 onPress={() => {
                   navigation.push('Home');
@@ -310,7 +312,7 @@ const DrawerNav = ({navigation}) => {
           headerTitleStyle: {fontWeight: '800'},
           headerTitle: 'New Promo',
           headerLeft: () => (
-            <View style={{paddingLeft: 20}}>
+            <View style={styles.headerLeft}>
               <Ion
                 onPress={() => {
                   navigation.push('Home');
@@ -334,7 +336,31 @@ const DrawerNav = ({navigation}) => {
           headerTitleStyle: {fontWeight: '800'},
           headerTitle: 'Edit Product',
           headerLeft: () => (
-            <View style={{paddingLeft: 20}}>
+            <View style={styles.headerLeft}>
+              <Ion
+                onPress={() => {
+                  navigation.push('Home');
+                }}
+                name="chevron-back-outline"
+                size={20}
+                color="black"
+              />
+            </View>
+          ),
+        }}
+      />
+      <Screen
+        name="EditPromo"
+        component={EditPromo}
+        options={{
+          headerStyle: {
+            backgroundColor: '#ECECEC',
+          },
+          headerTitleAlign: 'center',
+          headerTitleStyle: {fontWeight: '800'},
+          headerTitle: 'Edit Promo',
+          headerLeft: () => (
+            <View style={styles.headerLeft}>
               <Ion
                 onPress={() => {
                   navigation.push('Home');

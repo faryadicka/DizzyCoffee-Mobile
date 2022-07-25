@@ -184,6 +184,7 @@ const Home = ({route, navigation}) => {
                     image={item.image}
                     title={item.products_name}
                     price={item.normal_price}
+                    discount={item.discount}
                     id={item.id}
                     navigation={navigation}
                     params={route.params?.promo}

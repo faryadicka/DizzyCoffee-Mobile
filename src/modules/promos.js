@@ -20,3 +20,18 @@ export const getPromoByCouponAxios = coupon => {
   const URL = `${URL_DEPLOY}/api/promos?coupon=${coupon}`;
   return axios.get(URL);
 };
+
+export const getPromoByIdAxios = (id, token) => {
+  const URL = `${URL_DEPLOY}/api/promos/${id}`;
+  return axios.get(URL, {headers: {'x-access-token': token}});
+};
+
+export const updatePromoAxios = (id, body, token) => {
+  const URL = `${URL_DEPLOY}/api/promos/${id}`;
+  return axios.patch(URL, body, {
+    headers: {
+      'x-access-token': token,
+      'content-type': 'multipart/form-data',
+    },
+  });
+};
