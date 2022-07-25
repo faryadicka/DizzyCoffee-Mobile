@@ -9,7 +9,9 @@ function CardProducts({id, image, title, price, navigation, params}) {
   return (
     <Pressable
       onPress={() => {
-        navigation.navigate('ProductDetail', {id});
+        if (params !== 'promo') {
+          return navigation.navigate('ProductDetail', {id});
+        }
       }}>
       <View style={styles.cardContainer}>
         <Pressable
