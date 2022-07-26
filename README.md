@@ -81,7 +81,3 @@ Run the app in development mode after server/backend is running. with a command 
 $ npx react-native run-android
 ```
 
-Open http://localhost:3000 in your browser after project running.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
