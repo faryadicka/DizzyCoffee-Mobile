@@ -78,7 +78,7 @@ channelId = "YOUR CHANNEL ID"
 Run the app in development mode after server/backend is running. with a command like the following :
 
 ```
-$ npm run start
+$ npx react-native run-android
 ```
 
 Open http://localhost:3000 in your browser after project running.
