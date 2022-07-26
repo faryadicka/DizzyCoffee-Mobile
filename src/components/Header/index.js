@@ -8,7 +8,7 @@ import {getProfileAxios} from '../../modules/user';
 import Avatar from '../../assets/img/avatar.png';
 
 const HeaderRight = ({navigation}) => {
-  const tokenRedux = useSelector(state => state.auth.dataLogin?.token);
+  const {dataLogin} = useSelector(state => state.auth);
   const [profile, setProfile] = useState({});
   const getProfile = token => {
     getProfileAxios(token)
@@ -20,8 +20,10 @@ const HeaderRight = ({navigation}) => {
       });
   };
   useEffect(() => {
-    getProfile(tokenRedux);
-  }, [tokenRedux]);
+    if (dataLogin?.token) {
+      getProfile(dataLogin?.token);
+    }
+  }, [dataLogin]);
   return (
     <View style={styles.headerContainer}>
       <Pressable style={styles.imgWrap}>

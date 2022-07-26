@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Text, View, Image, Pressable, Modal} from 'react-native';
 import {Button} from '@rneui/themed';
 import styles from './styles';
@@ -9,17 +9,13 @@ import Material from 'react-native-vector-icons/MaterialCommunityIcons';
 import Awesome5 from 'react-native-vector-icons/FontAwesome5';
 import Awesome from 'react-native-vector-icons/FontAwesome';
 import {useSelector, useDispatch} from 'react-redux';
-import {getUserDataAction} from '../../redux/actionCreator/users';
 import {logoutAction} from '../../redux/actionCreator/auth';
 
 const MyDrawer = ({navigation}) => {
-  const tokenRedux = useSelector(state => state.auth.dataLogin?.token);
   const userData = useSelector(state => state.users.dataUser);
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
-  useEffect(() => {
-    dispatch(getUserDataAction(tokenRedux));
-  }, [tokenRedux, dispatch]);
+
   return (
     <>
       <View style={styles.container}>
@@ -83,10 +79,8 @@ const MyDrawer = ({navigation}) => {
               </Button>
               <Button
                 onPress={() => {
-                  navigation.navigate('Landing');
-                  setTimeout(() => {
-                    dispatch(logoutAction(null));
-                  }, 10000);
+                  navigation.replace('Landing');
+                  dispatch(logoutAction(null));
                 }}
                 color="#6A4029"
                 buttonStyle={styles.btnModal}>

@@ -14,7 +14,7 @@ const Home = ({route, navigation}) => {
   const [promos, setPromos] = useState([]);
   const [favorite, setFavorite] = useState([]);
   const [errMsg, setErrMsg] = useState([]);
-  const tokenRedux = useSelector(state => state.auth.dataLogin?.token);
+  const {dataLogin} = useSelector(state => state.auth);
   const role = useSelector(state => state.auth.dataLogin?.role);
   const dispatch = useDispatch();
   const [paramsCostum, setParamsCostum] = useState({
@@ -59,8 +59,14 @@ const Home = ({route, navigation}) => {
     getPromosHome();
     getProductsHome(params.category);
     getFavoriteHome(params.favorite);
-    dispatch(getUserDataAction(tokenRedux));
-  }, [params.category, params.favorite, dispatch, tokenRedux]);
+  }, [params.category, params.favorite]);
+
+  useEffect(() => {
+    if (dataLogin?.token) {
+      dispatch(getUserDataAction(dataLogin?.token));
+    }
+  }, [dataLogin, dispatch]);
+
   const handleSearch = () => {
     getProductsAxios(params.category, paramsCostum.search)
       .then(res => {
