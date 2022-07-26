@@ -139,15 +139,16 @@ const Home = ({route, navigation}) => {
         <Text style={styles.textViewAll}>All</Text>
         <Text
           onPress={() => {
-            route.params?.favorite === 'favorite'
-              ? navigation.navigate('Favorite', {favorite: 'favorite', page: 1})
-              : route.params?.category === 1
-              ? navigation.navigate('Favorite', {category: 1, page: 1})
-              : route.params?.category === 2
-              ? navigation.navigate('Favorite', {category: 2, page: 1})
-              : route.params?.category === 3
-              ? navigation.navigate('Favorite', {category: 3, page: 1})
-              : navigation.navigate('Favorite', {page: 1});
+            navigation.navigate('Favorite');
+            // route.params?.favorite === 'favorite'
+            //   ? navigation.navigate('Favorite', {favorite: 'favorite', page: 1})
+            //   : route.params?.category === 1
+            //   ? navigation.navigate('Favorite', {category: 1, page: 1})
+            //   : route.params?.category === 2
+            //   ? navigation.navigate('Favorite', {category: 2, page: 1})
+            //   : route.params?.category === 3
+            //   ? navigation.navigate('Favorite', {category: 3, page: 1})
+            //   : navigation.navigate('Favorite', {page: 1});
           }}
           style={styles.textViewAll}>
           See more

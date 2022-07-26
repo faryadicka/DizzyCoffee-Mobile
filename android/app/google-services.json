@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "14980245338",
+    "project_id": "dizzycoffeemobile",
+    "storage_bucket": "dizzycoffeemobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14980245338:android:bd78958842aa1525fdf563",
+        "android_client_info": {
+          "package_name": "com.dizzycoffern"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "14980245338-2234hk7ftp2m3ktp4vo653bopki18cce.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBMbaHBHdjOnc34QTWCoGwv3wOAOILxQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "14980245338-2234hk7ftp2m3ktp4vo653bopki18cce.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

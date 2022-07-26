@@ -5,6 +5,6 @@ export default StyleSheet.create({
     paddingLeft: 20,
   },
   headerRight: {
-    paddingLeft: 20,
+    paddingRight: 20,
   },
 });

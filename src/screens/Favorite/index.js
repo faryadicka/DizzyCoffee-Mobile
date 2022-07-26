@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import styles from './styles';
-import {getProductsAxios, getFavoriteAxios} from '../../modules/products';
+import {getProductsAxios} from '../../modules/products';
 import CardProductsMore from '../../components/CardProductsMore';
 import {Button} from '@rneui/base';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -16,10 +16,8 @@ import {RadioButton} from 'react-native-paper';
 
 function SeeMore({route, navigation}) {
   const [products, setProducts] = useState([]);
-  const [meta, setMeta] = useState([]);
-  const [favorite, setFavorite] = useState([]);
   const [errMsg, setErrMsg] = useState([]);
-  const [currentPage, setCurrentPage] = useState(route.params.page);
+  const [meta, setMeta] = useState(null);
   const [loading, setLoading] = useState(true);
   const [modalShow, setModalShow] = useState(false);
   const [checked, setChecked] = useState({
@@ -29,26 +27,20 @@ function SeeMore({route, navigation}) {
   const [paramsCostum, setParamsCostum] = useState({
     category: '',
     search: '',
-    favorite: 'favorite',
+    favorite: '',
   });
-  const {params = paramsCostum} = route;
-  const getFavoriteHome = favorites => {
-    getFavoriteAxios(favorites)
-      .then(res => {
-        setFavorite(res.data?.data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+  const [load, setLoad] = useState({
+    limit: 12,
+    page: 1,
+  });
 
-  const getProductsHome = (category, search, sort, order, page) => {
-    getProductsAxios(category, search, sort, order, page)
+  const getProductsHome = (category, search, sort, order, page, limit) => {
+    setLoading(true);
+    getProductsAxios(category, search, sort, order, page, limit)
       .then(res => {
-        setProducts(res.data?.data);
-        // setProducts([...products, ...res.data?.data]);
+        console.log(res);
         setMeta(res.data);
+        setProducts(res.data?.data);
         setLoading(false);
       })
       .catch(err => {
@@ -80,28 +72,16 @@ function SeeMore({route, navigation}) {
     );
   };
   const loadMore = () => {
-    if (meta.nextLink) {
-      return setCurrentPage(currentPage + 1);
+    if (meta.nextLink !== null) {
+      return setLoad({...load, limit: load.limit + 12});
     }
   };
   useEffect(() => {
-    getProductsHome(
-      params.category,
-      '',
-      checked.sort,
-      checked.order,
-      currentPage,
-    );
-    getFavoriteHome(params.favorite);
-  }, [
-    checked.order,
-    checked.sort,
-    currentPage,
-    params.category,
-    params.favorite,
-  ]);
+    getProductsHome('', '', '', '', load.page, load.limit);
+  }, [load.limit, load.page]);
+
   const handleSearch = () => {
-    getProductsAxios(params.category, paramsCostum.search)
+    getProductsAxios(paramsCostum.category, paramsCostum.search)
       .then(res => {
         console.log(res.data.data);
         setProducts(res.data?.data);
@@ -117,10 +97,10 @@ function SeeMore({route, navigation}) {
       paramsCostum.search,
       checked.sort,
       checked.order,
-      currentPage,
+      load.page,
+      load.limit,
     )
       .then(res => {
-        console.log(res.data);
         setProducts(res.data?.data);
       })
       .catch(err => {
@@ -128,8 +108,8 @@ function SeeMore({route, navigation}) {
         setErrMsg(err.response?.data.message);
       });
     setModalShow(false);
-    setCurrentPage(1);
   };
+  console.log(meta);
   return (
     <>
       <View style={styles.productsContainer}>
@@ -153,13 +133,13 @@ function SeeMore({route, navigation}) {
         <View style={styles.wrapperProducts}>
           <FlatList
             style={styles.FlatList}
-            data={route.params?.favorite ? favorite : products}
+            data={products}
             renderItem={renderItem}
             keyExtractor={item => item.id}
             horizontal={false}
             numColumns={2}
             ListFooterComponent={renderLoader}
-            onEndReached={loadMore}
+            onEndReached={!paramsCostum.category && loadMore}
           />
         </View>
       </View>

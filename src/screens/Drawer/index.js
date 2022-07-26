@@ -83,7 +83,7 @@ const MyDrawer = ({navigation}) => {
               </Button>
               <Button
                 onPress={() => {
-                  navigation.push('Landing');
+                  navigation.navigate('Landing');
                   setTimeout(() => {
                     dispatch(logoutAction(null));
                   }, 10000);

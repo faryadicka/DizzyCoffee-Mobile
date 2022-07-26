@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import {AppRegistry, Platform} from 'react-native';
+import {AppRegistry /*Platform*/} from 'react-native';
 import App from './src/App';
 import {name as appName} from './app.json';
 import {NavigationContainer} from '@react-navigation/native';
@@ -9,6 +9,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 import {store, persistor} from './src/redux/store';
 import {Provider as PaperProvider} from 'react-native-paper';
 import PushNotification from 'react-native-push-notification';
+import {sendLocalNotification} from './src/helpers/notifications';
 
 // Must be outside of any component LifeCycle (such as `componentDidMount`).
 PushNotification.configure({
@@ -20,6 +21,7 @@ PushNotification.configure({
   // (required) Called when a remote is received or opened, or local notification is opened
   onNotification: function (notification) {
     console.log('NOTIFICATION:', notification);
+    sendLocalNotification(notification.title, notification.message);
 
     // process the notification
 
@@ -58,7 +60,7 @@ PushNotification.configure({
    * - if you are not using remote notification or do not have Firebase installed, use this:
    *     requestPermissions: Platform.OS === 'ios'
    */
-  requestPermissions: Platform.OS === 'ios',
+  requestPermissions: true,
 });
 
 PushNotification.createChannel(

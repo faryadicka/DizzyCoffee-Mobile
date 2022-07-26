@@ -96,4 +96,10 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  textExpired: {
+    color: 'black',
+  },
+  dateLogo: {
+    color: 'black',
+  },
 });

@@ -14,17 +14,12 @@ export default StyleSheet.create({
     textAlign: 'center',
   },
   wrapperProducts: {
-    // flexDirection: 'row',
-    // flexWrap: 'wrap',
     flex: 1,
     width: '100%',
     borderTopRightRadius: 40,
     borderTopLeftRadius: 40,
-    // justifyContent: 'center',
     marginTop: 10,
-    // paddingBottom: 50,
     alignContent: 'center',
-    // backgroundColor: 'red',
     position: 'relative',
   },
   FlatList: {

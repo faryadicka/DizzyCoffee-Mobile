@@ -164,9 +164,9 @@ const CreatePromo = () => {
           <View style={styles.dateBox}>
             <Text style={styles.labelStyle}>Expired Date</Text>
             <View style={styles.containerDate}>
-              <Text>{`${moment(body.availableEnd).format(
-                'MMMM Do YYYY',
-              )}`}</Text>
+              <Text style={styles.textExpired}>{`${moment(
+                body.availableEnd,
+              ).format('MMMM Do YYYY')}`}</Text>
               <Fontisto
                 name="date"
                 size={20}

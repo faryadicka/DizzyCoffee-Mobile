@@ -5,7 +5,6 @@ import {formatToCurrency} from '../../helpers/formatToCurrency';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
 function CardProducts({id, image, title, price, navigation, params, discount}) {
-  console.log(discount);
   return (
     <Pressable
       onPress={() => {
