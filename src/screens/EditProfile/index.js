@@ -13,11 +13,11 @@ import moment from 'moment';
 import {RadioButton} from 'react-native-paper';
 import {Button} from '@rneui/base';
 import {getProfileAxios, updateProfileAxios} from '../../modules/user';
-import ModalNav from '../../components/ModalNav/ModalNav/index';
 import DatePicker from 'react-native-date-picker';
 import Ion from 'react-native-vector-icons/EvilIcons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import styles from './styles';
+import Toast from 'react-native-toast-message';
 import ImagePicker from 'react-native-image-crop-picker';
 
 const EditProfile = ({navigation}) => {
@@ -28,7 +28,7 @@ const EditProfile = ({navigation}) => {
     modalUpload: false,
     modalStatus: false,
   });
-  const [isError, setIsError] = useState(false);
+
   const [email, setEmail] = useState('');
   const [body, setBody] = useState({
     phone: '',
@@ -37,10 +37,6 @@ const EditProfile = ({navigation}) => {
     address: '',
     gender: 'Male',
     image: null,
-  });
-  const [message, setMessage] = useState({
-    success: '',
-    error: '',
   });
   const getProfile = token => {
     getProfileAxios(token)
@@ -52,7 +48,11 @@ const EditProfile = ({navigation}) => {
           birthdate: res.data?.data.birthdate,
           address: res.data?.data.address,
           gender: res.data?.data.gender,
-          image: {uri: res.data?.data.image_profile},
+          image: {
+            uri: res.data?.data.image_profile,
+            type: 'image/jpeg',
+            name: 'default.png',
+          },
         });
       })
       .catch(err => {
@@ -113,15 +113,18 @@ const EditProfile = ({navigation}) => {
     const bodyForm = uploadImage();
     updateProfileAxios(bodyForm, tokenRedux)
       .then(res => {
-        setIsError(false);
-        setMessage({...message, success: res.data?.message});
-        setModal({...modal, modalStatus: true});
+        Toast.show({
+          type: 'success',
+          text1: 'Success',
+          text2: res.data?.message,
+        });
       })
       .catch(err => {
-        setIsError(true);
-        console.log(err);
-        setMessage({...message, error: err.response?.data.message});
-        setModal({...modal, modalStatus: true});
+        Toast.show({
+          type: 'error',
+          text1: 'Error',
+          text2: err.response?.data.message,
+        });
       });
   };
 
@@ -236,14 +239,6 @@ const EditProfile = ({navigation}) => {
             buttonStyle={styles.btnSave}
           />
         </View>
-        <ModalNav
-          show={modal.modalStatus}
-          hide={() => setModal({...modal, modalStatus: false})}
-          navigation={navigation}
-          title={isError ? message.error : message.success}
-          status={true}
-          setShow={setModal}
-        />
       </ScrollView>
       <Modal
         visible={modal.modalUpload}

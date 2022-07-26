@@ -9,23 +9,18 @@ import Ion from 'react-native-vector-icons/EvilIcons';
 import {ScrollView} from 'react-native-gesture-handler';
 import {getAllhistories} from '../../modules/history';
 import ImagePicker from 'react-native-image-crop-picker';
-import ModalNav from '../../components/ModalNav/ModalNav/index';
+import Toast from 'react-native-toast-message';
 
 const Profile = ({navigation}) => {
   const tokenRedux = useSelector(state => state.auth.dataLogin?.token);
   const [profile, setProfile] = useState({});
   const [histories, setHistories] = useState([]);
-  const [isError, setIsError] = useState(false);
   const [body, setBody] = useState({
     image: null,
   });
   const [modal, setModal] = useState({
     upload: false,
     status: false,
-  });
-  const [message, setMessage] = useState({
-    success: '',
-    error: '',
   });
 
   const getProfile = token => {
@@ -97,16 +92,18 @@ const Profile = ({navigation}) => {
     const bodyForm = uploadImage();
     updateProfileAxios(bodyForm, tokenRedux)
       .then(res => {
-        console.log(res);
-        setIsError(false);
-        setMessage({...message, success: res.data?.message});
-        setModal({...modal, modalStatus: true});
+        Toast.show({
+          type: 'success',
+          text1: 'Success',
+          text2: res.data?.message,
+        });
       })
       .catch(err => {
-        setIsError(true);
-        console.log(err);
-        setMessage({...message, error: err.response?.data.message});
-        setModal({...modal, modalStatus: true});
+        Toast.show({
+          type: 'error',
+          text1: 'Error',
+          text2: err.response?.data.message,
+        });
       });
   };
   return (
@@ -190,14 +187,6 @@ const Profile = ({navigation}) => {
           />
         </View>
       </ScrollView>
-      <ModalNav
-        show={modal.status}
-        hide={() => setModal({...modal, status: false})}
-        navigation={navigation}
-        title={isError ? message.error : message.success}
-        status={true}
-        setShow={setModal}
-      />
       <Modal visible={modal.upload} transparent={true} animationType="slide">
         <View style={styles.modalContainer}>
           <View style={styles.modalBody}>
