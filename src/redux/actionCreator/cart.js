@@ -26,11 +26,8 @@ export const setCheckoutAction = (address, phone, delivery) => {
   };
 };
 
-export const clearCartAction = clear => {
+export const clearCartAction = () => {
   return {
     type: CLEARCART,
-    payload: {
-      clear,
-    },
   };
 };

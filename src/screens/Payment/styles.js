@@ -70,4 +70,8 @@ export default StyleSheet.create({
     padding: 15,
     fontWeight: '900',
   },
+  activeText: {
+    color: 'black',
+    fontWeight: '800',
+  },
 });

@@ -22,9 +22,16 @@ const cartReducer = (state = initialState, action) => {
       const {address, phone, delivery} = action.payload;
       return {...state, address, phone, delivery};
     case CLEARCART:
-      const {clear} = action.payload;
-      state = clear;
-      return {...state};
+      return {
+        ...state,
+        name: '',
+        price: 0,
+        qty: 0,
+        size: '',
+        id: '',
+        total: 0,
+        delivery: '',
+      };
     default:
       return state;
   }

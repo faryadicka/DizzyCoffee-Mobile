@@ -35,10 +35,11 @@ const Payment = ({navigation}) => {
       <View style={styles.rowAddress}>
         <Text style={styles.titleAddress}>Address details</Text>
         <Text
+          style={change ? styles.activeText : null}
           onPress={() => {
             setChange(!change);
           }}>
-          change
+          {change ? 'Input Active' : 'change'}
         </Text>
       </View>
       <View style={styles.addressCard}>

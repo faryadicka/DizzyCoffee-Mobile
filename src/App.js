@@ -31,6 +31,8 @@ import Toast, {BaseToast, ErrorToast} from 'react-native-toast-message';
 
 const DrawerNav = ({navigation}) => {
   const id = useSelector(state => state.cart.id);
+  const cart = useSelector(state => state.cart);
+
   const {Navigator, Screen} = createDrawerNavigator();
   return (
     <Navigator
@@ -123,7 +125,9 @@ const DrawerNav = ({navigation}) => {
             <View style={styles.headerLeft}>
               <Ion
                 onPress={() => {
-                  navigation.navigate('ProductDetail', {id: Number(id)});
+                  cart.size
+                    ? navigation.navigate('ProductDetail', {id: Number(id)})
+                    : navigation.goBack();
                 }}
                 name="chevron-back-outline"
                 size={20}

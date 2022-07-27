@@ -2,18 +2,19 @@ import React, {useState} from 'react';
 import {View, Text, Image} from 'react-native';
 import {Button} from '@rneui/base';
 import {RadioButton} from 'react-native-paper';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import styles from './styles';
 import {ScrollView} from 'react-native-gesture-handler';
 import {formatToCurrency} from '../../helpers/formatToCurrency';
 import Awesome from 'react-native-vector-icons/FontAwesome';
 import CreditCard from '../../assets/img/credit.png';
 import {paymentAxios} from '../../modules/payment';
-// import {clearCartAction} from '../../redux/actionCreator/cart';
+import {clearCartAction} from '../../redux/actionCreator/cart';
 import ModalNav from '../../components/ModalNav/ModalNav/index';
 import {sendLocalNotification} from '../../helpers/notifications';
 
 const Confirm = ({navigation}) => {
+  const dispatch = useDispatch();
   const cart = useSelector(state => state.cart);
   const token = useSelector(state => state.auth.dataLogin?.token);
   const [paymentMethods, setPaymentMethods] = useState('Card');
@@ -49,6 +50,7 @@ const Confirm = ({navigation}) => {
           'Payment Status',
           'Payment successfully, please check your history for detail!',
         );
+        dispatch(clearCartAction());
       })
       .catch(err => {
         console.log(err);
