@@ -88,8 +88,12 @@ $ npx react-native run-android
 <img width="200" src="src/assets/img/home.png" alt="welcome screen">
 </div>
 <div>
-<img width="200" src="src/assets/img/home.png" alt="home">
-<img width="200" src="src/assets/img/promo.png" alt="promo">
+<img width="200" src="src/assets/img/promo.png" alt="home">
+<img width="200" src="src/assets/img/productlist.png" alt="promo">
+</div>
+ <div>
+<img width="200" src="src/assets/img/modalfilter.png" alt="filter">
+<img width="200" src="src/assets/img/drawwer.png" alt="drawwer">
 </div>
 </div>
 
