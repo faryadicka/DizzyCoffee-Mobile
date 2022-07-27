@@ -24,13 +24,17 @@ Dizzy Coffee App is a service for order food and beverages. Customer can simply 
 
 - Register
 - Login
+- Reset Password
+- Filter & Sort Products
 - Search Products
 - Products Detail
 - Edit Profile
+- Edit Password
 - Payment or Checkout
 
 ### Admin:
 
+- All users features
 - Create Product
 - Create Promo
 - Update Product
