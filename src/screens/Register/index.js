@@ -39,18 +39,23 @@ const Register = ({navigation}) => {
         setIseError(false);
         setMessage({...message, success: 'Register Success!'});
         setShowModal(true);
+        setInput({
+          email: '',
+          password: '',
+          phone: '',
+        });
       })
       .catch(err => {
         console.log(err);
         setMessage({...message, err: err.response?.data.message});
         setIseError(true);
         setShowModal(true);
+        setInput({
+          email: '',
+          password: '',
+          phone: '',
+        });
       });
-    setInput({
-      email: '',
-      password: '',
-      phone: '',
-    });
   };
   return (
     <>
