@@ -80,4 +80,21 @@ Run the app in development mode after server/backend is running. with a command 
 ```
 $ npx react-native run-android
 ```
+## Screenshots
 
+<div style="display:flex" align="center">
+<div>
+<img width="200" src="src/assets/img/welcome.png" alt="Landing screen">
+<img width="200" src="src/assets/img/home.png" alt="welcome screen">
+</div>
+<div>
+<img width="200" src="src/assets/img/home.png" alt="home">
+<img width="200" src="src/assets/img/promo.png" alt="promo">
+</div>
+</div>
+
+<br/>
+
+# Related Projects
+
+[Dizzy Coffee Shop - Backend](https://github.com/faryadicka/DIZZY-COFFEESHOP-BE)
