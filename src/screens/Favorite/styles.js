@@ -41,7 +41,7 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 40,
+    backgroundColor: '#000000a8',
   },
   modalBody: {
     width: 300,

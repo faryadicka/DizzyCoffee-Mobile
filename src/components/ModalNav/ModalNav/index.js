@@ -12,6 +12,7 @@ const ModalNav = ({
   route = '',
   setShow,
 }) => {
+  const titleBtn = route === 'Main' ? 'Home' : route;
   return (
     <>
       <Modal animationType="slide" transparent={true} visible={show}>
@@ -31,7 +32,9 @@ const ModalNav = ({
                     }
                   : hide
               }>
-              <Text style={styles.textStyle}>{!status ? route : 'Close'}</Text>
+              <Text style={styles.textStyle}>
+                {!status ? titleBtn : 'Close'}
+              </Text>
             </Button>
           </View>
         </View>

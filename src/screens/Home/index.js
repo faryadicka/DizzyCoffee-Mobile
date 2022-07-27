@@ -8,6 +8,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import CardProducts from '../../components/CardProducts';
 import {Button} from '@rneui/themed';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+// import Toast from 'react-native-toast-message';
 
 const Home = ({route, navigation}) => {
   const [products, setProducts] = useState([]);
