@@ -24,13 +24,17 @@ Dizzy Coffee App is a service for order food and beverages. Customer can simply 
 
 - Register
 - Login
+- Reset Password
+- Filter & Sort Products
 - Search Products
 - Products Detail
 - Edit Profile
+- Edit Password
 - Payment or Checkout
 
 ### Admin:
 
+- All users features
 - Create Product
 - Create Promo
 - Update Product
@@ -80,4 +84,25 @@ Run the app in development mode after server/backend is running. with a command 
 ```
 $ npx react-native run-android
 ```
+## Screenshots
 
+<div style="display:flex" align="center">
+<div>
+<img width="200" src="src/assets/img/welcome.png" alt="Landing screen">
+<img width="200" src="src/assets/img/home.png" alt="welcome screen">
+</div>
+<div>
+<img width="200" src="src/assets/img/promo.png" alt="home">
+<img width="200" src="src/assets/img/productlist.png" alt="promo">
+</div>
+ <div>
+<img width="200" src="src/assets/img/modalfilter.png" alt="filter">
+<img width="200" src="src/assets/img/drawwer.png" alt="drawwer">
+</div>
+</div>
+
+<br/>
+
+# Related Projects
+
+[Dizzy Coffee Shop - Backend](https://github.com/faryadicka/DIZZY-COFFEESHOP-BE)
